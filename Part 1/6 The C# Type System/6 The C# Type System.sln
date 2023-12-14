@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Variable Shop", "The Variable Shop\The Variable Shop.csproj", "{0E66A170-F1F7-469F-B83E-F1E5CB0D1790}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Variable Shop Returns", "The Variable Shop Returns\The Variable Shop Returns.csproj", "{E8F38950-5713-4BC2-9EBD-E366ADCECEBF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0E66A170-F1F7-469F-B83E-F1E5CB0D1790}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E66A170-F1F7-469F-B83E-F1E5CB0D1790}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E66A170-F1F7-469F-B83E-F1E5CB0D1790}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E8F38950-5713-4BC2-9EBD-E366ADCECEBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E8F38950-5713-4BC2-9EBD-E366ADCECEBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E8F38950-5713-4BC2-9EBD-E366ADCECEBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E8F38950-5713-4BC2-9EBD-E366ADCECEBF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
