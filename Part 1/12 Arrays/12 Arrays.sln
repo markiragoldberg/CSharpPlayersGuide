@@ -5,6 +5,8 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Replicator of D'To", "The Replicator of D'To\The Replicator of D'To.csproj", "{903D9942-CA0C-49F2-BC64-44F812470DA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Laws of Freach", "The Laws of Freach\The Laws of Freach.csproj", "{0D8C4953-294A-4F42-8D94-C3E6CFD84189}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{903D9942-CA0C-49F2-BC64-44F812470DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{903D9942-CA0C-49F2-BC64-44F812470DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{903D9942-CA0C-49F2-BC64-44F812470DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D8C4953-294A-4F42-8D94-C3E6CFD84189}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D8C4953-294A-4F42-8D94-C3E6CFD84189}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D8C4953-294A-4F42-8D94-C3E6CFD84189}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D8C4953-294A-4F42-8D94-C3E6CFD84189}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
