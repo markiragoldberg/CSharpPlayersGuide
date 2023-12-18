@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Point", "The Point\The 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Color", "The Color\The Color.csproj", "{BC871B7E-0F5C-4478-B728-B94FD8583555}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Card", "The Card\The Card.csproj", "{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
