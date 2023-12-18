@@ -7,13 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simula's Test", "Simula's T
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Simula's Soup", "Simula's Soup\Simula's Soup.csproj", "{E8F05029-0D89-4F84-9F0F-9E64E3C31FB6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vin Fletcher's Arrows", "Vin Fletcher's Arrows\Vin Fletcher's Arrows.csproj", "{2367AC1F-F342-414B-97AB-A16EBDCD7CCC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vin Fletcher's Arrows", "Vin Fletcher's Arrows\Vin Fletcher's Arrows.csproj", "{2367AC1F-F342-414B-97AB-A16EBDCD7CCC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vin's Trouble", "Vin's Trouble\Vin's Trouble.csproj", "{CD950539-AA24-47E6-8872-439C409D0BEE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Vin's Trouble", "Vin's Trouble\Vin's Trouble.csproj", "{CD950539-AA24-47E6-8872-439C409D0BEE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Properties of Arrows", "The Properties of Arrows\The Properties of Arrows.csproj", "{9FABFEDA-770A-4964-B924-AB8E4BDC17B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Properties of Arrows", "The Properties of Arrows\The Properties of Arrows.csproj", "{9FABFEDA-770A-4964-B924-AB8E4BDC17B6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrow Factories", "Arrow Factories\Arrow Factories.csproj", "{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrow Factories", "Arrow Factories\Arrow Factories.csproj", "{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Point", "The Point\The Point.csproj", "{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Color", "The Color\The Color.csproj", "{BC871B7E-0F5C-4478-B728-B94FD8583555}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +49,14 @@ Global
 		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BC871B7E-0F5C-4478-B728-B94FD8583555}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
