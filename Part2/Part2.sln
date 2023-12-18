@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vin's Trouble", "Vin's Trou
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Properties of Arrows", "The Properties of Arrows\The Properties of Arrows.csproj", "{9FABFEDA-770A-4964-B924-AB8E4BDC17B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrow Factories", "Arrow Factories\Arrow Factories.csproj", "{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{9FABFEDA-770A-4964-B924-AB8E4BDC17B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9FABFEDA-770A-4964-B924-AB8E4BDC17B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9FABFEDA-770A-4964-B924-AB8E4BDC17B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
