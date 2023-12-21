@@ -1,0 +1,74 @@
+[
+  {
+    "name": "15PuzzleGame",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Loops until player quits",
+      "Parses input into commands",
+      "Has 15PuzzleDisplay draw after taking an input",
+      "Sends move commands to 15PuzzleBoard",
+      "Sends new game commands to 15PuzzleRandomizer"
+    ],
+    "collaborators": [
+      "15PuzzleBoard",
+      "15PuzzleRandomizer",
+      "15PuzzleDisplay"
+    ]
+  },
+  {
+    "name": "15PuzzleBoard",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Tracks position of tiles on board",
+      "Knows if board is in winning state",
+      "Takes move commands, validates them, and applies them",
+      "Tracks number of moves made"
+    ],
+    "collaborators": [
+      "15PuzzleTile"
+    ]
+  },
+  {
+    "name": "15PuzzleTile",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Has a number on it"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "15PuzzleRandomizer",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Randomizes layout of tiles on board on request"
+    ],
+    "collaborators": [
+      "15PuzzleBoard",
+      "15PuzzleTile"
+    ]
+  },
+  {
+    "name": "15PuzzleDisplay",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Displays the board and tiles",
+      "Displays the number of moves made"
+    ],
+    "collaborators": [
+      "15PuzzleBoard",
+      "15PuzzleTile"
+    ]
+  }
+]
