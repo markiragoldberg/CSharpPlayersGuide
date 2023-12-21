@@ -1,0 +1,48 @@
+[
+  {
+    "name": "RockPaperScissorsGame",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "- Loops and takes player input",
+      "- Allows starting new matches",
+      "- Allows viewing the match history",
+      "- Allows quitting"
+    ],
+    "collaborators": [
+      "RockPaperScissorsHistory",
+      "RockPaperScissorsMatch"
+    ]
+  },
+  {
+    "name": "RockPaperScissorsMatch",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "- Takes a RockPaperScissorsHistory when starting a match",
+      "- Gets a gesture from both players",
+      "- Displays who won",
+      "- Reports winner to given RockPaperScissorsHistory"
+    ],
+    "collaborators": [
+      "RockPaperScissorsHistory"
+    ]
+  },
+  {
+    "name": "RockPaperScissorsHistory",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "- Tracks matches won by each player",
+      "- Tracks number of matches and draws",
+      "- Tracks chronological order of matches",
+      "- Displays match history"
+    ],
+    "collaborators": [
+      ""
+    ]
+  }
+]
