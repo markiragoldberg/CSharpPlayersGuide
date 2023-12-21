@@ -1,0 +1,57 @@
+[
+  {
+    "name": "HangmanGame",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Loops until player quits",
+      "Parses input into commands",
+      "Sends commands to HangmanMatch",
+      "Displays state using HangmanDisplay"
+    ],
+    "collaborators": [
+      "HangmanMatch",
+      "HangmanDisplay"
+    ]
+  },
+  {
+    "name": "HangmanWordPicker",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Randomly selects a random word for use in HangmanGames"
+    ],
+    "collaborators": [
+      ""
+    ]
+  },
+  {
+    "name": "HangmanDisplay",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Displays word length, known characters in word, remaining guesses, incorrect guesses",
+      "Displays history of guesses in current match",
+      "Displays \"You won!\" or \"You lost!\" if word is identified or guesses are exhausted"
+    ],
+    "collaborators": [
+      "HangmanMatch"
+    ]
+  },
+  {
+    "name": "HangmanMatch",
+    "superclasses": "",
+    "subclasses": "",
+    "type": 1,
+    "responsibilities": [
+      "Gets a word for new matches using HangmanWordPicker",
+      "Knows the word, previous guesses and order, number of remaining guesses"
+    ],
+    "collaborators": [
+      "HangmanWordPicker"
+    ]
+  }
+]
