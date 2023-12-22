@@ -15,15 +15,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Properties of Arrows", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Arrow Factories", "Arrow Factories\Arrow Factories.csproj", "{EE13E9DB-04A9-4A84-A5AB-39A324B0D644}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Point", "The Point\The Point.csproj", "{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Point", "The Point\The Point.csproj", "{B5058707-CA08-4FB6-9CD2-3F79AE8385D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Color", "The Color\The Color.csproj", "{BC871B7E-0F5C-4478-B728-B94FD8583555}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Color", "The Color\The Color.csproj", "{BC871B7E-0F5C-4478-B728-B94FD8583555}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Card", "The Card\The Card.csproj", "{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Card", "The Card\The Card.csproj", "{B9AF68A1-F7AC-4445-843B-D68CAD2FC889}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Locked Door", "The Locked Door\The Locked Door.csproj", "{5FEF4D6B-1880-4D6A-9338-E2EEAA6FD8EF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Locked Door", "The Locked Door\The Locked Door.csproj", "{5FEF4D6B-1880-4D6A-9338-E2EEAA6FD8EF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Password Validator", "The Password Validator\The Password Validator.csproj", "{2A34E7DE-B932-4CD7-847F-663C1D46A0B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Password Validator", "The Password Validator\The Password Validator.csproj", "{2A34E7DE-B932-4CD7-847F-663C1D46A0B8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing Inventory", "Packing Inventory\Packing Inventory.csproj", "{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -75,6 +77,10 @@ Global
 		{2A34E7DE-B932-4CD7-847F-663C1D46A0B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A34E7DE-B932-4CD7-847F-663C1D46A0B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A34E7DE-B932-4CD7-847F-663C1D46A0B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

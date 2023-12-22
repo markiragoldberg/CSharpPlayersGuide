@@ -1,8 +1,11 @@
 ﻿Point point1 = new Point( 2, 3);
 Point point2 = new Point(-4, 0);
+Point point3 = new Point(2, 3);
 
 Console.WriteLine($"Point 1: {point1}");
 Console.WriteLine($"Point 2: {point2}");
+Console.WriteLine(point1.Equals( point2 ) );
+Console.WriteLine(point1.Equals(point3));
 
 // ---------------------------
 
@@ -18,6 +21,7 @@ class Point
     public Point Plus(Point point) => new(X + point.X, Y + point.Y);
     public Point Minus(int x, int y) => new(X - x, Y - y);
     public Point Minus(Point point) => new(X - point.X, Y - point.Y);
+	public bool Equals(Point point) => X == point.X && Y == point.Y;
     public override string ToString() => $"({X}, {Y})";
 }
 
