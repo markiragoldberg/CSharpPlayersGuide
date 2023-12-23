@@ -123,12 +123,12 @@ class Pack(float weightLimit, float volumeLimit, int ItemLimit)
 
     public bool Add(InventoryItem item, out string? reason)
     {
-        if (Weight + item.Weight > WeightLimit)
+        if (Weight + item.Weight > WeightLimit + 0.0001f)
         {
             reason = "it weighs too much";
             return false;
         }
-        else if (Volume + item.Volume > VolumeLimit)
+        else if (Volume + item.Volume > VolumeLimit + 0.0001f)
         {
             reason = "it is too bulky";
             return false;
@@ -147,7 +147,17 @@ class Pack(float weightLimit, float volumeLimit, int ItemLimit)
 
     public override string ToString()
     {
-        return $"pack ({Weight:#.##}/{WeightLimit:#.##} weight, " +
+        string result = $"pack ({Weight:#.##}/{WeightLimit:#.##} weight, " +
             $"{Volume:#.##}/{VolumeLimit:#.##} volume, {ItemCount}/{ItemLimit} items)";
+        if (ItemCount > 0)
+        {
+            result += " containing ";
+            for(int i = 0; i < ItemCount - 1; i++)
+            {
+                result += $"{_items[i]}, ";
+            }
+            result += _items[ItemCount - 1].ToString();
+        }
+        return result;
     }
 }
