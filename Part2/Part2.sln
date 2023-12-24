@@ -25,11 +25,15 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Locked Door", "The Lock
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Password Validator", "The Password Validator\The Password Validator.csproj", "{2A34E7DE-B932-4CD7-847F-663C1D46A0B8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Packing Inventory", "Packing Inventory\Packing Inventory.csproj", "{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Packing Inventory", "Packing Inventory\Packing Inventory.csproj", "{8E7398DA-E39E-4A5A-9A5B-1DBBE6DB753E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Labelling Inventory", "Labelling Inventory\Labelling Inventory.csproj", "{599BB51A-A604-449B-8F7E-4551A3560DE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Labelling Inventory", "Labelling Inventory\Labelling Inventory.csproj", "{599BB51A-A604-449B-8F7E-4551A3560DE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Old Robot", "The Old Robot\The Old Robot.csproj", "{FC8F9F68-B654-4F76-8701-0753EB219023}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Old Robot", "The Old Robot\The Old Robot.csproj", "{FC8F9F68-B654-4F76-8701-0753EB219023}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robotic Interface", "Robotic Interface\Robotic Interface.csproj", "{F8BD457A-0EFD-466D-904D-DF692B5E62DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room Coordinates", "Room Coordinates\Room Coordinates.csproj", "{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -93,6 +97,14 @@ Global
 		{FC8F9F68-B654-4F76-8701-0753EB219023}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC8F9F68-B654-4F76-8701-0753EB219023}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FC8F9F68-B654-4F76-8701-0753EB219023}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8BD457A-0EFD-466D-904D-DF692B5E62DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8BD457A-0EFD-466D-904D-DF692B5E62DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8BD457A-0EFD-466D-904D-DF692B5E62DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8BD457A-0EFD-466D-904D-DF692B5E62DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
