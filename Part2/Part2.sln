@@ -35,6 +35,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Robotic Interface", "Roboti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room Coordinates", "Room Coordinates\Room Coordinates.csproj", "{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War Preparations", "War Preparations\War Preparations.csproj", "{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,10 @@ Global
 		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B9B6387-D0D6-42A5-8A00-2F9035B172BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
