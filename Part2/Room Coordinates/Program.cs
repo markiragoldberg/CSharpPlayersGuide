@@ -23,7 +23,7 @@ static void ReportAdjacency(int X = 0, int Y = 0)
 
 // ----------------------------------
 
-readonly struct Coordinate
+public readonly struct Coordinate
 {
     public int X { get; init; }
     public int Y { get; init; }
