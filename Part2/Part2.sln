@@ -37,6 +37,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Room Coordinates", "Room Co
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "War Preparations", "War Preparations\War Preparations.csproj", "{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Colored Items", "ColoredItems\Colored Items.csproj", "{6F18B71A-EC30-49A3-B3E9-A2CED0AEF090}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -111,6 +113,10 @@ Global
 		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCFF094D-D378-4FBC-AAAE-3AC723B1F201}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6F18B71A-EC30-49A3-B3E9-A2CED0AEF090}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6F18B71A-EC30-49A3-B3E9-A2CED0AEF090}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6F18B71A-EC30-49A3-B3E9-A2CED0AEF090}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6F18B71A-EC30-49A3-B3E9-A2CED0AEF090}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
