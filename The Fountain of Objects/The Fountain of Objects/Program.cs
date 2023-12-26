@@ -1,4 +1,6 @@
-﻿GameBoard? board = null;
+﻿using System.ComponentModel.DataAnnotations;
+
+GameBoard? board = null;
 
 Console.Write("Do you want a small, medium, or large game? ");
 while (board == null)
@@ -22,37 +24,89 @@ while (board == null)
 }
 
 HelpSystem.DisplayIntro();
-board.MovePlayer(0, 0);
 while(!board.GameOver())
 {
-    board.Player.Kill();
+    Console.WriteLine("" +
+        "--------------------------------------------------------------------------------");
+    Console.WriteLine($"You are in the room at {board.Player.Location}.");
+    board.DisplaySenses();
+    Console.Write("What do you want to do? ");
+    string? input = Console.ReadLine();
+    switch (input?.ToLower())
+    {
+        case "help":
+            HelpSystem.DisplayHelp();
+            break;
+        case "move north":
+            board.MovePlayer(0, -1);
+            break;
+        case "move south":
+            board.MovePlayer(0, 1);
+            break;
+        case "move east":
+            board.MovePlayer(1, 0);
+            break;
+        case "move west":
+            board.MovePlayer(-1, 0);
+            break;
+        case "shoot north":
+            board.Player.Shoot(0, -1);
+            break;
+        case "shoot south":
+            board.Player.Shoot(0, 1);
+            break;
+        case "shoot east":
+            board.Player.Shoot(1, 0);
+            break;
+        case "shoot west":
+            board.Player.Shoot(-1, 0);
+            break;
+        case "enable fountain":
+            board.Player.EnableFountain();
+            break;
+        case "quit":
+            board.Player.Kill();
+            break;
+        default:
+            Console.WriteLine("Enter \"help\" for help.");
+            break;
+    }
 }
+if (board.FountainOfObjects.Enabled)
+{
+    Console.ForegroundColor = ConsoleColor.Green;
+    Console.WriteLine("You have restored the Fountain of Objects and escaped!\nYou win!");
+    Console.ResetColor();
+}
+
 
 // ------------------------
 
 public class GameBoard
 {
     public Player Player { get; private set; }
+    public FountainOfObjects FountainOfObjects { get; private set; }
     private List<IRoomFeature> _features;
-    private FountainOfObjects fountainOfObjects;
+    //private FountainOfObjects fountainOfObjects;
     public int Size { get; }
     public GameBoard(int size)
     {
         Size = size;
         _features = new List<IRoomFeature>();
         _features.Add(new Entrance(new Point(0, 0)));
-        Player = new Player(new Point(0, 0));
-        if(size <= 4)
+        Player = new Player(new Point(0, 0), this);
+        if (size <= 4)
         {
-            fountainOfObjects = new FountainOfObjects(new Point(0, 2));
-            // ... add pits, amaroks, maelstroms ...
+            FountainOfObjects = new FountainOfObjects(new Point(0, 2));
+            _features.Add(FountainOfObjects);
             _features.Add(new Pit(new Point(0, 1)));
             _features.Add(new Maelstrom(new Point(1, 2), this));
             _features.Add(new Amarok(new Point(2, 1), this));
         }
         else if (size <= 6)
         {
-            fountainOfObjects = new FountainOfObjects(new Point(4, 5));
+            FountainOfObjects = new FountainOfObjects(new Point(4, 5));
+            _features.Add(FountainOfObjects);
             _features.Add(new Pit(new Point(2, 4)));
             _features.Add(new Pit(new Point(1, 1)));
             _features.Add(new Maelstrom(new Point(2, 2), this));
@@ -61,7 +115,8 @@ public class GameBoard
         }
         else
         {
-            fountainOfObjects = new FountainOfObjects(new Point(7, 6));
+            FountainOfObjects = new FountainOfObjects(new Point(7, 6));
+            _features.Add(FountainOfObjects);
             _features.Add(new Pit(new Point(2, 1)));
             _features.Add(new Pit(new Point(0, 3)));
             _features.Add(new Pit(new Point(7, 5)));
@@ -77,15 +132,11 @@ public class GameBoard
     public void MovePlayer(int changeInX, int changeInY)
     {
         Move(Player, changeInX, changeInY);
-        foreach(IRoomFeature feature in _features)
+        foreach (IRoomFeature feature in _features)
         {
-            if(Player.Location ==  feature.Location)
+            if (Player.Location == feature.Location)
             {
                 feature.StepOn(Player);
-            }
-            else if(Player.Location.AdjacentTo(feature.Location))
-            {
-                feature.Sense();
             }
         }
     }
@@ -96,29 +147,82 @@ public class GameBoard
             Math.Clamp(moving.Location.Y + changeInY, 0, Size - 1));
     }
 
+    public bool Shoot(Point target)
+    {
+        bool shotSomething = false;
+        foreach (IRoomFeature feature in _features)
+        {
+            if (feature.Location == target)
+            {
+                shotSomething = shotSomething || feature.ShootWithArrow();
+                if (shotSomething)
+                    break;
+            }
+        }
+        return shotSomething;
+    }
+    public void Enable(Point location)
+    {
+        foreach(IRoomFeature feature in _features)
+        {
+            if(feature is IEnablable enablable && feature.Location == location)
+            {
+                bool worked = enablable.Enable();
+                if(!worked)
+                {
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    Console.WriteLine($"You have already restored the Fountain of Objects. Now you should return to the entrance!");
+                    Console.ResetColor();
+                }
+                return;
+            }
+        }
+        Console.ForegroundColor = ConsoleColor.DarkYellow;
+        Console.WriteLine("The Fountain of Objects is not here.");
+        Console.ResetColor();
+    }
     public bool GameOver() => !Player.IsAlive
-        || (Player.Location.Is(0,0)  && fountainOfObjects.Enabled);
-
+        || (Player.Location.Is(0, 0) && FountainOfObjects.Enabled);
     public void RemoveFeature(IRoomFeature toRemove)
     {
         _features.Remove(toRemove);
     }
+    public void DisplaySenses()
+    {
+        foreach (IRoomFeature feature in _features)
+        {
+            if (Player.Location.AdjacentTo(feature.Location))
+            {
+                feature.Sense(feature.Location == Player.Location? 0 : 1);
+            }
+        }
+    }
 }
 
-public class Player : IMovable
+public class Player(Point location, GameBoard gameBoard) : IMovable
 {
-    public Point Location { get; set; }
-    public int Arrows { get; private set; }
-    public bool IsAlive { get; private set; }
-    public Player(Point location)
-    {
-        Location = location;
-        Arrows = 5;
-    }
-    public void UseArrow()
+    public Point Location { get; set; } = location;
+    public int Arrows { get; private set; } = 5;
+    public bool IsAlive { get; private set; } = true;
+    private GameBoard _gameBoard = gameBoard;
+
+    public void Shoot(int x, int y)
     {
         if (Arrows > 0)
+        {
             Arrows -= 1;
+            _gameBoard.Shoot(new Point(Location.X + x, Location.Y + y));
+        }
+        else
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.WriteLine("You are out of arrows.");
+            Console.ResetColor();
+        }
+    }
+    public void EnableFountain()
+    {
+        _gameBoard.Enable(Location);
     }
     public void Kill() => IsAlive = false;
 }
@@ -129,6 +233,10 @@ public readonly record struct Point(int X, int Y)
     {
         return Math.Abs(X - other.X) <= 1
             && Math.Abs(Y - other.Y) <= 1;
+    }
+    public override string ToString()
+    {
+        return $"(Row={X}, Column={Y})";
     }
 }
 
@@ -146,9 +254,23 @@ public class Entrance(Point location) : IRoomFeature
 public class FountainOfObjects(Point location) : IRoomFeature, IEnablable
 {
     public Point Location { get; } = location;
-    public bool Enabled { get; set; }
-    public void StepOn(Player player)
+    public bool Enabled { get; private set; } = false;
+    public void StepOn(Player player) { }
+    public bool Enable()
     {
+        if(!Enabled)
+        {
+            Enabled = true;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+    public void Sense(int distance)
+    {
+        if (distance > 0) return;
         Console.ForegroundColor = ConsoleColor.Blue;
         if (Enabled == false)
         {
@@ -158,7 +280,7 @@ public class FountainOfObjects(Point location) : IRoomFeature, IEnablable
         else
         {
             Console.WriteLine(
-                "You hear the rushing waters from the Fountain of Objects. " +
+                "You hear the rushing waters of the Fountain of Objects. " +
                 "It has been reactivated!");
         }
         Console.ResetColor();
@@ -175,7 +297,7 @@ public class Pit(Point location) : IRoomFeature
         player.Kill();
         Console.ResetColor();
     }
-    public void Sense()
+    public void Sense(int distance)
     {
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("You feel a draft. There is a pit in a nearby room.");
@@ -186,13 +308,14 @@ public class Pit(Point location) : IRoomFeature
 public class Amarok(Point location, GameBoard board) : IRoomFeature
 {
     public Point Location { get; } = location;
-    private GameBoard _gameBoard = board;
-    public void ShootWithArrow()
+    private readonly GameBoard _gameBoard = board;
+    public bool ShootWithArrow()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("Your arrow strikes an amarok and kills it.");
         Console.ResetColor();
         _gameBoard.RemoveFeature(this);
+        return true;
     }
     public void StepOn(Player player)
     {
@@ -201,7 +324,7 @@ public class Amarok(Point location, GameBoard board) : IRoomFeature
         player.Kill();
         Console.ResetColor();
     }
-    public void Sense()
+    public void Sense(int distance)
     {
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("You can smell the rotten stench of an amarok in a nearby room.");
@@ -214,12 +337,13 @@ public class Maelstrom(Point location, GameBoard gameBoard) : IRoomFeature, IMov
     public Point Location { get; set; } = location;
     private readonly GameBoard _gameBoard = gameBoard;
 
-    public void ShootWithArrow()
+    public bool ShootWithArrow()
     {
         Console.ForegroundColor = ConsoleColor.Cyan;
         Console.WriteLine("A maelstrom nearby shrieks deafeningly, then falls silent.");
         Console.ResetColor();
         _gameBoard.RemoveFeature(this);
+        return true;
     }
     public void StepOn(Player player)
     {
@@ -230,7 +354,7 @@ public class Maelstrom(Point location, GameBoard gameBoard) : IRoomFeature, IMov
         _gameBoard.MovePlayer(+2, -1);
         _gameBoard.Move(this, -2, +1);
     }
-    public void Sense()
+    public void Sense(int distance)
     {
         Console.ForegroundColor = ConsoleColor.DarkYellow;
         Console.WriteLine("You hear the growling and groaning of a maelstrom nearby.");
@@ -241,9 +365,9 @@ public class Maelstrom(Point location, GameBoard gameBoard) : IRoomFeature, IMov
 public interface IRoomFeature
 {
     public Point Location { get; }
-    public void ShootWithArrow() { }
+    public bool ShootWithArrow() { return false; }
     public void StepOn(Player player) { }
-    public void Sense() { }
+    public void Sense(int distance) { }
 }
 
 public interface IMovable
@@ -253,7 +377,8 @@ public interface IMovable
 
 public interface IEnablable
 {
-    public bool Enabled { get; set;}
+    public bool Enabled { get; }
+    public bool Enable();
 }
 
 public static class HelpSystem
