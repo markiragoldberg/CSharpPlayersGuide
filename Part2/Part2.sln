@@ -39,7 +39,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "War Preparations", "War Pre
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colored Items", "ColoredItems\Colored Items.csproj", "{6F18B71A-EC30-49A3-B3E9-A2CED0AEF090}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Robot Pilot", "The Robot Pilot\The Robot Pilot.csproj", "{403F8728-A3F8-417B-AAA7-D8C88B3047C4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Robot Pilot", "The Robot Pilot\The Robot Pilot.csproj", "{403F8728-A3F8-417B-AAA7-D8C88B3047C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Lists of Commands", "Lists of Commands\Lists of Commands.csproj", "{C308CD26-1B32-4C44-BF07-3AFF77D0789E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -123,6 +125,10 @@ Global
 		{403F8728-A3F8-417B-AAA7-D8C88B3047C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{403F8728-A3F8-417B-AAA7-D8C88B3047C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{403F8728-A3F8-417B-AAA7-D8C88B3047C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C308CD26-1B32-4C44-BF07-3AFF77D0789E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C308CD26-1B32-4C44-BF07-3AFF77D0789E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C308CD26-1B32-4C44-BF07-3AFF77D0789E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C308CD26-1B32-4C44-BF07-3AFF77D0789E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
