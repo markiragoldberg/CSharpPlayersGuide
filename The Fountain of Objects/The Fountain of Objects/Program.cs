@@ -24,6 +24,7 @@ while (board == null)
 }
 
 HelpSystem.DisplayIntro();
+DateTime gameStartTime = DateTime.Now;
 while(!board.GameOver())
 {
     Console.WriteLine("" +
@@ -78,6 +79,20 @@ if (board.FountainOfObjects.Enabled)
     Console.WriteLine("You have restored the Fountain of Objects and escaped!\nYou win!");
     Console.ResetColor();
 }
+TimeSpan totalGameTime = DateTime.Now - gameStartTime;
+Console.Write($"The game lasted ");
+List<string> timeItems = new List<string>();
+if (totalGameTime.Days > 0)
+    timeItems.Add($"{totalGameTime.Days} days");
+if (totalGameTime.Hours > 0)
+    timeItems.Add($"{totalGameTime.Hours} hours");
+if (totalGameTime.Minutes > 0)
+    timeItems.Add($"{totalGameTime.Minutes} minutes");
+if (totalGameTime.Seconds > 0)
+    timeItems.Add($"{totalGameTime.Seconds} seconds");
+for(int i = 0; i < timeItems.Count -1; i++)
+    Console.Write(timeItems[i] + ", ");
+Console.WriteLine("and " + timeItems[^1] + ".");
 
 
 // ------------------------
