@@ -23,7 +23,7 @@
         }
         public static bool IsMultipleOfTen(int number)
         {
-            return number % 10 == 0;
+            return number != 0 && number % 10 == 0;
         }
     }
 }
