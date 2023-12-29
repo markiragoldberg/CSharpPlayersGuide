@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>The_Lambda_Sieve</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Safer Number Crunching\Safer Number Crunching.csproj" />
+    <ProjectReference Include="..\The Sieve\The Sieve.csproj" />
+  </ItemGroup>
+
+</Project>
