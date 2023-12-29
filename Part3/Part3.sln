@@ -7,15 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Feud", "The Feud\The Fe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Safer Number Crunching", "Safer Number Crunching\Safer Number Crunching.csproj", "{31ADA308-5A3C-4607-9743-F3661C83A67F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Better Random", "Better Random\Better Random.csproj", "{41913A9A-8319-444E-A701-0E02051511FB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Better Random", "Better Random\Better Random.csproj", "{41913A9A-8319-444E-A701-0E02051511FB}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Exepti's Game", "Exepti's Game\Exepti's Game.csproj", "{E6050939-28D5-419B-B3F8-9F2880AECE6F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Sieve", "The Sieve\The Sieve.csproj", "{4095E26D-DD6E-4328-96C8-3414A799F127}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Sieve", "The Sieve\The Sieve.csproj", "{4095E26D-DD6E-4328-96C8-3414A799F127}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Charberry Trees", "Charberry Trees\Charberry Trees.csproj", "{4B3B8BB3-9C7A-429D-A083-C48835CEC47A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Charberry Trees", "Charberry Trees\Charberry Trees.csproj", "{4B3B8BB3-9C7A-429D-A083-C48835CEC47A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Lambda Sieve", "The Lambda Sieve\The Lambda Sieve.csproj", "{5226F053-AB84-4BA1-9991-6F315E7866C2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Lambda Sieve", "The Lambda Sieve\The Lambda Sieve.csproj", "{5226F053-AB84-4BA1-9991-6F315E7866C2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Long Game", "The Long Game\The Long Game.csproj", "{E882E74B-16B9-4256-8785-4DDA430E0E75}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{5226F053-AB84-4BA1-9991-6F315E7866C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5226F053-AB84-4BA1-9991-6F315E7866C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5226F053-AB84-4BA1-9991-6F315E7866C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
