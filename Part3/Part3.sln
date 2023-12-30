@@ -19,6 +19,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Lambda Sieve", "The Lam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Long Game", "The Long Game\The Long Game.csproj", "{E882E74B-16B9-4256-8785-4DDA430E0E75}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Potion Masters of Pattren", "The Potion Masters of Pattren\The Potion Masters of Pattren.csproj", "{B974A083-7DDD-44B2-838E-0B4844DD9546}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E882E74B-16B9-4256-8785-4DDA430E0E75}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
