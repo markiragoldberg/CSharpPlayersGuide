@@ -17,9 +17,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Charberry Trees", "Charberr
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Lambda Sieve", "The Lambda Sieve\The Lambda Sieve.csproj", "{5226F053-AB84-4BA1-9991-6F315E7866C2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Long Game", "The Long Game\The Long Game.csproj", "{E882E74B-16B9-4256-8785-4DDA430E0E75}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Long Game", "The Long Game\The Long Game.csproj", "{E882E74B-16B9-4256-8785-4DDA430E0E75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Potion Masters of Pattren", "The Potion Masters of Pattren\The Potion Masters of Pattren.csproj", "{B974A083-7DDD-44B2-838E-0B4844DD9546}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Potion Masters of Pattren", "The Potion Masters of Pattren\The Potion Masters of Pattren.csproj", "{B974A083-7DDD-44B2-838E-0B4844DD9546}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Navigating Operand City", "Navigating Operand City\Navigating Operand City.csproj", "{65EF13D8-F90A-402B-B379-3884CB574DD1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B974A083-7DDD-44B2-838E-0B4844DD9546}.Release|Any CPU.Build.0 = Release|Any CPU
+		{65EF13D8-F90A-402B-B379-3884CB574DD1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65EF13D8-F90A-402B-B379-3884CB574DD1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65EF13D8-F90A-402B-B379-3884CB574DD1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65EF13D8-F90A-402B-B379-3884CB574DD1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
