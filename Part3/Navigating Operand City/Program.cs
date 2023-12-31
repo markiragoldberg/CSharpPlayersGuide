@@ -1,4 +1,6 @@
-﻿BlockCoordinate bc = new(0, 0);
+﻿using System.Drawing;
+
+BlockCoordinate bc = new(0, 0);
 Console.WriteLine(bc);
 foreach(Direction direction in Enum.GetValues(typeof(Direction)))
 {
@@ -56,5 +58,21 @@ public record BlockCoordinate(int Row, int Column)
         // opposite of how the BlockCoordinate is supposed to be used.
     }
 }
-public record BlockOffset(int RowOffset, int ColumnOffset);
+public record BlockOffset(int RowOffset, int ColumnOffset)
+{
+    public static explicit operator BlockOffset(Direction direction) => direction switch
+    {
+        Direction.North => new(-1, 0),
+        Direction.South => new(1,  0),
+        Direction.East  => new(0,  1),
+        Direction.West  => new(0, -1),
+        _ => throw new ArgumentException("direction isn't valid")
+    };
+
+    // I made this conversion explicit because converting from an undefined distance 
+    // to a distance of 1 unit feels like a form of data loss or a nontrivial change.
+    // But if this conversion were to be used a lot, maybe it would prove annoyingly
+    // bureaucratic and unnecessary.
+};
+
 public enum Direction { North, East, South, West }
