@@ -184,7 +184,8 @@ public static class ConsoleInput
             if (input != null)
             {
                 resultIndex = acceptableInputs.IndexOf(input);
-                return acceptableInputs[resultIndex];
+                if(resultIndex != -1)
+                    return acceptableInputs[resultIndex];
             }
             Console.Write("Try again: ");
         }
