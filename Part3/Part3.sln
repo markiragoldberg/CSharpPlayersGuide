@@ -29,6 +29,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "The Repeating Stream", "The
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Asynchronous Random Words", "Asynchronous Random Words\Asynchronous Random Words.csproj", "{FCA0F589-FF79-4818-AA8F-6DEF6F72AD6E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniterOfAdds", "UniterOfAdds\UniterOfAdds.csproj", "{E2EE8C43-F377-4146-8914-C239010E2928}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{FCA0F589-FF79-4818-AA8F-6DEF6F72AD6E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FCA0F589-FF79-4818-AA8F-6DEF6F72AD6E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCA0F589-FF79-4818-AA8F-6DEF6F72AD6E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2EE8C43-F377-4146-8914-C239010E2928}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2EE8C43-F377-4146-8914-C239010E2928}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2EE8C43-F377-4146-8914-C239010E2928}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2EE8C43-F377-4146-8914-C239010E2928}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
