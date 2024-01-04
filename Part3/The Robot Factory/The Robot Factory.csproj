@@ -9,7 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\ConsoleInput\ConsoleInput.csproj" />
+    <ProjectReference Include="..\ConsoleInputV2\ConsoleIO.csproj" />
   </ItemGroup>
 
 </Project>
