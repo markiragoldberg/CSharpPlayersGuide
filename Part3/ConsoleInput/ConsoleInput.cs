@@ -2,6 +2,7 @@
 
 namespace PlayersGuide
 {
+    [Obsolete("Use ConsoleIO.ColoredConsole")]
     public static class ConsoleInput
     {
         public static T AskForType<T>(string prompt, string? repeatPrompt = null) where T : IParsable<T>
@@ -19,7 +20,7 @@ namespace PlayersGuide
         }
         public static T AskForTypeInRange<T>(
             string prompt, T min, T max, 
-            List<T>? exclusions = null, string? repeatPrompt = null,
+            ICollection<T>? exclusions = null, string? repeatPrompt = null,
             string? outOfRangePrompt = null, string? excludedPrompt = null)
             where T : IParsable<T>, IComparisonOperators<T, T, bool>
         {
@@ -43,29 +44,20 @@ namespace PlayersGuide
                     Console.Write(repeatPrompt ?? "Try again: ");
             }
         }
-        public static string AskForOption(string prompt, List<string> options, 
+        public static string AskForOption(string prompt, ICollection<string> options, 
             string? repeatPrompt = null, bool caseSensitive = false)
         {
             if (options.Count == 0)
                 throw new ArgumentException("options cannot be empty");
-            if (!caseSensitive)
-            {
-                for (int i = 0; i < options.Count; i++)
-                    options[i] = options[i].ToLower();
-            }
             Console.Write(prompt);
             string? input;
-            int resultIndex = -1; // return value if input not found
             while (true)
             {
                 input = Console.ReadLine();
-                if (!caseSensitive)
-                    input = input?.ToLower();
-                if (input != null)
+                if(input != null && options.Contains(input, 
+                    caseSensitive ? StringComparer.Ordinal : StringComparer.OrdinalIgnoreCase))
                 {
-                    resultIndex = options.IndexOf(input);
-                    if (resultIndex != -1)
-                        return options[resultIndex];
+                    return caseSensitive ? input : input.ToLower();
                 }
                 Console.Write(repeatPrompt ?? "Try again: ");
             }
@@ -73,13 +65,18 @@ namespace PlayersGuide
         public static bool AskToConfirm(string prompt, string? repeatPrompt = null)
         {
             string yesNo = AskForOption(prompt, ["yes", "no"], repeatPrompt);
-            return yesNo == "yes" ? true : false;
+            return yesNo.Equals("yes");
         }
         public static bool AskToConfirm(string prompt, bool defaultResult, string? repeatPrompt = null)
         {
-            string yesNo = AskForType<string>(prompt, repeatPrompt);
-            if (yesNo == "yes") return true;
-            else if (yesNo == "no") return false;
+            Console.Write(prompt);
+            string? yesNo = Console.ReadLine();
+            if (yesNo == null)
+                return defaultResult;
+            if (defaultResult == false && yesNo.Equals("yes", StringComparison.OrdinalIgnoreCase))
+                return true;
+            else if (defaultResult == true && yesNo.Equals("no", StringComparison.OrdinalIgnoreCase))
+                return false;
             else return defaultResult;
         }
     }
