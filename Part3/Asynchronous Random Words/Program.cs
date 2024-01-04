@@ -41,8 +41,6 @@ async void RandomlyRecreateAndReportAsync(string word)
     Console.WriteLine(".");
     Console.ForegroundColor = ConsoleColor.Cyan;
 }
-Task<int> RandomlyRecreateAsync(string word)
-    => Task.Run(() => RandomlyRecreate(word));
 
 int RandomlyRecreate(string word)
 {
