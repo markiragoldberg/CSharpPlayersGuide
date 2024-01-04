@@ -50,6 +50,8 @@ else
     Console.ForegroundColor = ConsoleColor.Cyan;
     Console.WriteLine("The Manticore has been destroyed! The city of Consolas has been saved!");
 }
+Console.WriteLine("Press any key...");
+Console.ReadKey(true);
 Console.ResetColor();
 
 void WriteCityHP()
