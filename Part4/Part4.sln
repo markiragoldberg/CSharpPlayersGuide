@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "The Final Battle", "The Final Battle\The Final Battle.csproj", "{72670B23-AC8F-445C-91FD-150FA37C45EE}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleIO", "..\..\ConsoleEngine\ConsoleIO.csproj", "{6925FC60-5EB8-412B-BA2B-852002EDA7A1}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{72670B23-AC8F-445C-91FD-150FA37C45EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72670B23-AC8F-445C-91FD-150FA37C45EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72670B23-AC8F-445C-91FD-150FA37C45EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72670B23-AC8F-445C-91FD-150FA37C45EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6925FC60-5EB8-412B-BA2B-852002EDA7A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6925FC60-5EB8-412B-BA2B-852002EDA7A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6925FC60-5EB8-412B-BA2B-852002EDA7A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6925FC60-5EB8-412B-BA2B-852002EDA7A1}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41A82EAD-D217-4E84-9EB2-794508D27D0E}
+	EndGlobalSection
+EndGlobal
