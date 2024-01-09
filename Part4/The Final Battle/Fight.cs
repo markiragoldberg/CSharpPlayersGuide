@@ -18,7 +18,7 @@
     }
     public FightTeam GetEnemyTeam(Fighter fighter)
     {
-        if (LeftTeam.Fighters.Contains(fighter))
+        if (LeftTeam.Contains(fighter))
             return RightTeam;
         return LeftTeam;
     }

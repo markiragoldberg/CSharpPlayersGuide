@@ -4,9 +4,10 @@
     {
         var actions = from a in fighter.Actions where a is AttackAction select a;
         IFightAction? chosenAction = actions.FirstOrDefault();
-        if (chosenAction != null)
+        FightTeam enemyTeam = fight.GetEnemyTeam(fighter);
+        if (chosenAction != null && enemyTeam.Count > 0)
         {
-            target = fight.GetEnemyTeam(fighter).Fighters[0];
+            target = fight.GetEnemyTeam(fighter)[0];
             return chosenAction;
         }
         else
