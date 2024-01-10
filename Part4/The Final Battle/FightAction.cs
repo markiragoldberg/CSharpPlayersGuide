@@ -10,7 +10,7 @@ public interface IFightAction
 public class DoNothingFightAction : IFightAction
 {
     public readonly string messageFormat = "{0} does nothing.";
-    public string Name { get =>  messageFormat; }
+    public string Name { get =>  "NOTHING"; }
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
@@ -21,9 +21,10 @@ public class DoNothingFightAction : IFightAction
 }
 
 public class AttackAction(
-    string messageFormat, int minDamage, int maxDamage, int bonusDamage) : IFightAction
+    string name, string messageFormat, 
+    int minDamage, int maxDamage, int bonusDamage) : IFightAction
 {
-    public string Name { get => messageFormat; }
+    public string Name { get => name; }
     public int MinDamage { get; } = minDamage;
     public int MaxDamage { get; } = maxDamage;
     public int BonusDamage { get; } = bonusDamage;
@@ -35,7 +36,7 @@ public class AttackAction(
         int damage = RNG.Roll(MinDamage, MaxDamage, BonusDamage);
         target.TakeDamage(damage);
         ColoredConsole.WriteLine($"{target.Name} was hit for {damage} damage.", ConsoleColor.Red);
-        ColoredConsole.WriteLine($"{target.Name} is now at {target.Health}/{target.maxHealth} HP.", ConsoleColor.Magenta);
+        ColoredConsole.WriteLine($"{target.Name} is now at {target.Health}/{target.MaxHealth} HP.", ConsoleColor.Magenta);
         target.FightTeam?.RemoveDead();
         Thread.Sleep(500);
     }

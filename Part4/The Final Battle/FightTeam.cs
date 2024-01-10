@@ -2,7 +2,7 @@
 
 public class FightTeam
 {
-    public bool Active
+    public bool HasAliveFighters
     {
         get
         {
@@ -20,17 +20,16 @@ public class FightTeam
     private List<Fighter> _fighters;
     private ICommander _commander;
 
-    public FightTeam(List<Fighter> fighters, ICommander commander)
+    public FightTeam(ICommander commander)
     {
         _fighters = new();
-        foreach(Fighter fighter in fighters)
-            AddFighter(fighter);
         _commander = commander;
     }
     public void DoRound(Fight fight)
     {
         foreach (var fighter in _fighters)
         {
+            fight.WriteStatus();
             TakeTurn(fighter, fight);
         }
     }
@@ -50,7 +49,7 @@ public class FightTeam
     public void RemoveDead()
     {
         int i = 0;
-        while(i < _fighters.Count)
+        while (i < _fighters.Count)
         {
             if (!_fighters[i].Alive)
             {
