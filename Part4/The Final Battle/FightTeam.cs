@@ -20,12 +20,12 @@ public class FightTeam
     private List<Fighter> _fighters;
     private ICommander _commander;
 
-    public FightTeam(List<Fighter> fighters)
+    public FightTeam(List<Fighter> fighters, ICommander commander)
     {
         _fighters = new();
         foreach(Fighter fighter in fighters)
             AddFighter(fighter);
-        _commander = new MindlessAICommander();
+        _commander = commander;
     }
     public void DoRound(Fight fight)
     {

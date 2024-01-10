@@ -19,6 +19,12 @@
         skeleton._actions.Add(new AttackAction("{0} used BONE CRUNCH on {1}.", 0, 1, 0));
         return skeleton;
     }
+    public static Fighter CreateBoss()
+    {
+        Fighter boss = new("Uncoded One", 25);
+        boss._actions.Add(new AttackAction("{0} used UNRAVEL on {1}.", 0, 2, 0));
+        return boss;
+    }
     public void TakeDamage(int damage)
     {
         Health -= Math.Min(damage, Health);

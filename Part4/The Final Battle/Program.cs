@@ -1,22 +1,29 @@
 ﻿using ConsoleIO;
+using The_Final_Battle;
 
 string playerName = ColoredConsole.AskForType<string>("What is your name? ");
 ColoredConsole.WriteLine($"Hello, {playerName}!",ConsoleColor.Cyan);
 
 List<Fighter> playerFighters = new List<Fighter>();
-List<Fighter> enemyFighters = new List<Fighter>();
 playerFighters.Add(Fighter.CreateHero(playerName));
-enemyFighters.Add(Fighter.CreateSkeleton());
-FightTeam playerTeam = new FightTeam(playerFighters);
-FightTeam enemyTeam = new FightTeam(enemyFighters);
-Fight firstFight = new Fight(playerTeam, enemyTeam);
+FightTeam playerTeam = new FightTeam(playerFighters, new HumanCommander());
 
-firstFight.Resolve(out FightTeam winningTeam);
-if (winningTeam == playerTeam)
+List<Fight> fights = new();
+fights.Add(new(playerTeam, new([Fighter.CreateSkeleton()], new MindlessAICommander())));
+fights.Add(new(playerTeam, new([Fighter.CreateSkeleton(), Fighter.CreateSkeleton()], new MindlessAICommander())));
+fights.Add(new(playerTeam, new([Fighter.CreateBoss()], new MindlessAICommander())));
+
+int f = 0;
+while (f < fights.Count)
 {
-    Console.WriteLine("player team won game");
+    fights[f].Resolve(out FightTeam winningTeam);
+    if(winningTeam != playerTeam)
+    {
+        ColoredConsole.WriteLine("The heroes have fallen! The Uncoded One has prevailed...", ConsoleColor.Magenta);
+        Console.ReadKey(true);
+        return;
+    }
+    f++;
 }
-else
-{
-    Console.WriteLine("enemy team won game");
-}
+ColoredConsole.WriteLine("The Uncoded One has been defeated! The Realms of C# are saved!", ConsoleColor.Green);
+Console.ReadKey(true);

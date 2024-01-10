@@ -3,12 +3,14 @@ using The_Final_Battle;
 
 public interface IFightAction
 {
+    string Name { get; }
     void Resolve(Fighter user, Fighter target, Fight fight);
 }
 
 public class DoNothingFightAction : IFightAction
 {
     public readonly string messageFormat = "{0} does nothing.";
+    public string Name { get =>  messageFormat; }
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
@@ -21,7 +23,7 @@ public class DoNothingFightAction : IFightAction
 public class AttackAction(
     string messageFormat, int minDamage, int maxDamage, int bonusDamage) : IFightAction
 {
-    public string MessageFormat { get; } = messageFormat;
+    public string Name { get => messageFormat; }
     public int MinDamage { get; } = minDamage;
     public int MaxDamage { get; } = maxDamage;
     public int BonusDamage { get; } = bonusDamage;
@@ -29,7 +31,7 @@ public class AttackAction(
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
         ColoredConsole.WriteLine(
-            String.Format(MessageFormat, user.Name, target.Name), ConsoleColor.Yellow);
+            String.Format(messageFormat, user.Name, target.Name), ConsoleColor.Yellow);
         int damage = RNG.Roll(MinDamage, MaxDamage, BonusDamage);
         target.TakeDamage(damage);
         ColoredConsole.WriteLine($"{target.Name} was hit for {damage} damage.", ConsoleColor.Red);
