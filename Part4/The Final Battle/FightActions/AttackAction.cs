@@ -1,25 +1,4 @@
-﻿using ConsoleIO;
-using The_Final_Battle;
-
-public interface IFightAction
-{
-    string Name { get; }
-    void Resolve(Fighter user, Fighter target, Fight fight);
-}
-
-public class DoNothingFightAction : IFightAction
-{
-    public readonly string messageFormat = "{0} does nothing.";
-    public string Name { get =>  "NOTHING"; }
-
-    public void Resolve(Fighter user, Fighter target, Fight fight)
-    {
-        fight.CombatLog.AddMessage(
-            String.Format(messageFormat, user.Name), ConsoleColor.Yellow);
-        //Thread.Sleep(500);
-    }
-}
-
+﻿namespace The_Final_Battle;
 public class AttackAction(
     string name, string messageFormat, 
     int minDamage, int maxDamage, int bonusDamage) : IFightAction

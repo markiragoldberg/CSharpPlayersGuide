@@ -1,4 +1,6 @@
-﻿public class MindlessAICommander : ICommander
+﻿namespace The_Final_Battle;
+
+public class MindlessAICommander : ICommander
 {
     public IFightAction GetCombatAction(Fighter fighter, out Fighter target, Fight fight)
     {

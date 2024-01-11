@@ -1,4 +1,6 @@
-﻿public interface ICommander
+﻿namespace The_Final_Battle;
+
+public interface ICommander
 {
     public IFightAction GetCombatAction(Fighter acting, out Fighter target, Fight fight);
 }

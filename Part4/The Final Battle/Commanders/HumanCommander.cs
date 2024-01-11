@@ -27,5 +27,5 @@ namespace The_Final_Battle
                 return acting.Actions[choice - 1];
             }
         }
-    }
+	}
 }

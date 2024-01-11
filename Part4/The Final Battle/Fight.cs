@@ -1,5 +1,4 @@
 ﻿using ConsoleIO;
-using System.Xml.Linq;
 using The_Final_Battle;
 
 public class Fight

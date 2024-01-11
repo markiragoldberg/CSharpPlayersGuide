@@ -1,4 +1,6 @@
-﻿public class Fighter(string name, int maxHealth, FightTeam? fightTeam = null)
+﻿using The_Final_Battle;
+
+public class Fighter(string name, int maxHealth, FightTeam? fightTeam = null)
 {
     public string Name { get; private set; } = name;
     public int Health { get; private set; } = maxHealth;

@@ -1,5 +1,5 @@
 ﻿using ConsoleIO;
-
+namespace The_Final_Battle;
 public class FightTeam
 {
     public bool HasAliveFighters
