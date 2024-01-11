@@ -1,14 +1,17 @@
 ﻿using ConsoleIO;
 using System.Xml.Linq;
+using The_Final_Battle;
 
 public class Fight
 {
     public FightTeam LeftTeam { get; }
     public FightTeam RightTeam { get; }
+    public CombatLog CombatLog { get; }
     public Fight(FightTeam leftTeam, FightTeam rightTeam)
     {
         LeftTeam = leftTeam;
         RightTeam = rightTeam;
+        CombatLog = new CombatLog();
     }
     public void Resolve(out FightTeam winningTeam)
     {
@@ -35,7 +38,7 @@ public class Fight
             {
                 ColoredConsole.Write($"{LeftTeam[i].Name,-25}", ConsoleColor.Cyan);
                 string healthString = $"({LeftTeam[i].Health}/{LeftTeam[i].MaxHealth}) HP";
-                ColoredConsole.Write($"{healthString,15}", ConsoleColor.Green);
+                ColoredConsole.Write($"{healthString,-15}", ConsoleColor.Green);
             }
             else
                 Console.Write($"{"",40}");
@@ -48,5 +51,6 @@ public class Fight
             Console.WriteLine();
         }
         Console.WriteLine("================================================================================");
+        CombatLog.WriteLog();
     }
 }

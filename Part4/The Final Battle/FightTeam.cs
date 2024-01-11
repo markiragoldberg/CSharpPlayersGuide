@@ -29,16 +29,16 @@ public class FightTeam
     {
         foreach (var fighter in _fighters)
         {
-            fight.WriteStatus();
             TakeTurn(fighter, fight);
         }
     }
     private void TakeTurn(Fighter acting, Fight fight)
     {
-        ColoredConsole.WriteLine($"It is {acting.Name}'s turn.", ConsoleColor.Yellow);
-        Thread.Sleep(250);
+        fight.CombatLog.AddMessage($"It is {acting.Name}'s turn.", ConsoleColor.Yellow);
+        fight.WriteStatus();
+        //Thread.Sleep(250);
         _commander.GetCombatAction(acting, out Fighter target, fight).Resolve(acting, target, fight);
-        Thread.Sleep(400);
+        //Thread.Sleep(400);
     }
     public bool Contains(Fighter fighter) => _fighters.Contains(fighter);
     public void AddFighter(Fighter fighter)
@@ -46,14 +46,14 @@ public class FightTeam
         fighter.FightTeam = this;
         _fighters.Add(fighter);
     }
-    public void RemoveDead()
+    public void RemoveDead(Fight fight)
     {
         int i = 0;
         while (i < _fighters.Count)
         {
             if (!_fighters[i].Alive)
             {
-                ColoredConsole.WriteLine($"{_fighters[i].Name} has died!", ConsoleColor.Red);
+                fight.CombatLog.AddMessage($"{_fighters[i].Name} has died!", ConsoleColor.Red);
                 _fighters.RemoveAt(i);
             }
             else

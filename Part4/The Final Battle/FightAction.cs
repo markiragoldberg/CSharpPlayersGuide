@@ -14,9 +14,9 @@ public class DoNothingFightAction : IFightAction
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
-        ColoredConsole.WriteLine(
+        fight.CombatLog.AddMessage(
             String.Format(messageFormat, user.Name), ConsoleColor.Yellow);
-        Thread.Sleep(500);
+        //Thread.Sleep(500);
     }
 }
 
@@ -31,13 +31,15 @@ public class AttackAction(
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
-        ColoredConsole.WriteLine(
+        fight.CombatLog.AddMessage(
             String.Format(messageFormat, user.Name, target.Name), ConsoleColor.Yellow);
         int damage = RNG.Roll(MinDamage, MaxDamage, BonusDamage);
         target.TakeDamage(damage);
-        ColoredConsole.WriteLine($"{target.Name} was hit for {damage} damage.", ConsoleColor.Red);
-        ColoredConsole.WriteLine($"{target.Name} is now at {target.Health}/{target.MaxHealth} HP.", ConsoleColor.Magenta);
-        target.FightTeam?.RemoveDead();
-        Thread.Sleep(500);
+        fight.CombatLog.AddMessage(
+            $"{target.Name} was hit for {damage} damage.", ConsoleColor.Red);
+        fight.CombatLog.AddMessage(
+            $"{target.Name} is now at {target.Health}/{target.MaxHealth} HP.", ConsoleColor.Magenta);
+        target.FightTeam?.RemoveDead(fight);
+        //Thread.Sleep(500);
     }
 }
