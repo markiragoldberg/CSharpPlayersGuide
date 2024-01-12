@@ -34,8 +34,8 @@ public class FightTeam
     }
     private void TakeTurn(Fighter acting, Fight fight)
     {
-        fight.CombatLog.AddMessage($"It is {acting.Name}'s turn.", ConsoleColor.Yellow);
-        fight.WriteStatus();
+        fight.Display.AddMessage($"It is {acting.Name}'s turn.", MessageCategory.Info);
+        fight.Display.UpdateDisplay(fight);
         //Thread.Sleep(250);
         _commander.GetCombatAction(acting, out Fighter target, fight).Resolve(acting, target, fight);
         //Thread.Sleep(400);
@@ -53,7 +53,7 @@ public class FightTeam
         {
             if (!_fighters[i].Alive)
             {
-                fight.CombatLog.AddMessage($"{_fighters[i].Name} has died!", ConsoleColor.Red);
+                fight.Display.AddMessage($"{_fighters[i].Name} has died!", MessageCategory.VeryBad);
                 _fighters.RemoveAt(i);
             }
             else

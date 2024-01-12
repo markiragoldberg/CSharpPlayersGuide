@@ -6,7 +6,7 @@ public class DoNothingFightAction : IFightAction
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
-        fight.CombatLog.AddMessage(
-            String.Format(messageFormat, user.Name), ConsoleColor.Yellow);
+        fight.Display.AddMessage(
+            String.Format(messageFormat, user.Name), MessageCategory.Info);
     }
 }

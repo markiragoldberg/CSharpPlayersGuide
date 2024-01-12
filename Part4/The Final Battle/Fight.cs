@@ -5,12 +5,12 @@ public class Fight
 {
     public FightTeam LeftTeam { get; }
     public FightTeam RightTeam { get; }
-    public CombatLog CombatLog { get; }
-    public Fight(FightTeam leftTeam, FightTeam rightTeam)
+    public ConsoleDisplay Display { get; }
+    public Fight(FightTeam leftTeam, FightTeam rightTeam, ConsoleDisplay display)
     {
         LeftTeam = leftTeam;
         RightTeam = rightTeam;
-        CombatLog = new CombatLog();
+        Display = display;
     }
     public void Resolve(out FightTeam winningTeam)
     {
@@ -26,30 +26,5 @@ public class Fight
         if (LeftTeam.Contains(fighter))
             return RightTeam;
         return LeftTeam;
-    }
-    public void WriteStatus()
-    {
-        Console.Clear();
-        Console.WriteLine("==================================== BATTLE ====================================");
-        for(int i = 0; i < LeftTeam.Count || i < RightTeam.Count; ++i)
-        {
-            if (i < LeftTeam.Count)
-            {
-                ColoredConsole.Write($"{LeftTeam[i].Name,-25}", ConsoleColor.Cyan);
-                string healthString = $"({LeftTeam[i].Health}/{LeftTeam[i].MaxHealth}) HP";
-                ColoredConsole.Write($"{healthString,-15}", ConsoleColor.Green);
-            }
-            else
-                Console.Write($"{"",40}");
-            if (i < RightTeam.Count)
-            {
-                ColoredConsole.Write($"{RightTeam[i].Name,25}", ConsoleColor.Red);
-                string healthString = $"({RightTeam[i].Health}/{RightTeam[i].MaxHealth}) HP";
-                ColoredConsole.Write($"{healthString,15}", ConsoleColor.Magenta);
-            }
-            Console.WriteLine();
-        }
-        Console.WriteLine("================================================================================");
-        CombatLog.WriteLog();
     }
 }

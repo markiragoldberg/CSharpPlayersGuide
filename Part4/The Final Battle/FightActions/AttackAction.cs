@@ -10,14 +10,14 @@ public class AttackAction(
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
-        fight.CombatLog.AddMessage(
-            String.Format(messageFormat, user.Name, target.Name), ConsoleColor.Yellow);
+        fight.Display.AddMessage(
+            String.Format(messageFormat, user.Name, target.Name), MessageCategory.Warning);
         int damage = RNG.Roll(MinDamage, MaxDamage, BonusDamage);
         target.TakeDamage(damage);
-        fight.CombatLog.AddMessage(
-            $"{target.Name} was hit for {damage} damage.", ConsoleColor.Red);
-        fight.CombatLog.AddMessage(
-            $"{target.Name} is now at {target.Health}/{target.MaxHealth} HP.", ConsoleColor.Magenta);
+        fight.Display.AddMessage(
+            $"{target.Name} was hit for {damage} damage.", MessageCategory.Warning);
+        fight.Display.AddMessage(
+            $"{target.Name} is now at {target.Health}/{target.MaxHealth} HP.", MessageCategory.Warning);
         target.FightTeam?.RemoveDead(fight);
         //Thread.Sleep(500);
     }
