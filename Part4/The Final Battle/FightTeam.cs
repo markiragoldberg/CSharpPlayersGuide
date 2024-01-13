@@ -29,7 +29,8 @@ public class FightTeam
     {
         foreach (var fighter in _fighters)
         {
-            TakeTurn(fighter, fight);
+            if (fight.GetEnemyTeam(fighter).HasAliveFighters)
+                TakeTurn(fighter, fight);
         }
     }
     private void TakeTurn(Fighter acting, Fight fight)

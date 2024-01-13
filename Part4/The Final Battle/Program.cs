@@ -1,15 +1,15 @@
 ﻿using ConsoleIO;
 using The_Final_Battle;
 
-string playerName = ColoredConsole.AskForType<string>("What is your name? ");
-ColoredConsole.WriteLine($"Hello, {playerName}!",ConsoleColor.Cyan);
+TFBConsole display = new();
+string playerName = display.AskForType<string>("What is your name? ");
+display.AddMessage($"Hello, {playerName}!", MessageCategory.VeryGood);
 
 FightTeam playerTeam = new FightTeam(new HumanCommander());
 playerTeam.AddFighter(Fighter.CreateHero(playerName, playerTeam));
 playerTeam.AddFighter(Fighter.CreateFletcher(playerTeam));
 
 List<Fight> fights = new();
-TFBConsole display = new();
 
 FightTeam enemy1 = new FightTeam(new MindlessAICommander());
 enemy1.AddFighter(Fighter.CreateSkeleton());

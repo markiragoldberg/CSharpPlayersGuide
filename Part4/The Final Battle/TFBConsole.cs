@@ -1,20 +1,38 @@
 ﻿using ConsoleIO;
+using System.Numerics;
 
 namespace The_Final_Battle
 {
 	public class TFBConsole(int maxMessages = 15)
 	{
 		public Queue<LogMessage> log = new();
+		public Queue<LogMessage> temporaryLog = new();
 		public int MaxMessages { get => maxMessages; }
 
 		public void AddMessage(string message, MessageCategory category)
 		{
+			temporaryLog.Clear();
 			log.Enqueue(new LogMessage(message, category));
 			while (log.Count > maxMessages)
 				log.Dequeue();
 		}
+		public void AddTemporaryMessage(string message, MessageCategory category)
+		{
+			temporaryLog.Enqueue(new LogMessage(message, category));
+		}
 
-		public void UpdateDisplay(Fight fight)
+		public T AskForType<T>(string prompt, string? repeatPrompt = null) where T : IParsable<T>
+			=> ColoredConsole.AskForType<T>(prompt, repeatPrompt);
+
+		public T AskForTypeInRange<T>(
+			string prompt, T min, T max,
+			ICollection<T>? excludedValues = null, string? repeatPrompt = null,
+			string? outOfRangePrompt = null, string? excludedPrompt = null)
+			where T : IParsable<T>, IComparisonOperators<T, T, bool>
+			=> ColoredConsole.AskForTypeInRange<T>(
+				prompt, min, max, excludedValues, repeatPrompt, outOfRangePrompt);
+
+			public void UpdateDisplay(Fight fight)
 		{
 			Console.Clear();
 			Console.WriteLine("==================================== BATTLE ====================================");
@@ -57,18 +75,27 @@ namespace The_Final_Battle
 		{
 			foreach (LogMessage message in log)
 			{
-				ColoredConsole.WriteLine(message.Text, message.Category switch
-				{
-					MessageCategory.Good => ConsoleColor.Green,
-					MessageCategory.VeryGood => ConsoleColor.Cyan,
-					MessageCategory.Bad => ConsoleColor.Red,
-					MessageCategory.VeryBad => ConsoleColor.Magenta,
-					MessageCategory.Prompt => ConsoleColor.White,
-					MessageCategory.Warning => ConsoleColor.Yellow,
-					MessageCategory.Info => ConsoleColor.Gray,
-					_ => ConsoleColor.Gray
-				});
+				WriteMessage(message);
 			}
+			foreach (LogMessage message in temporaryLog)
+			{
+				WriteMessage(message);
+			}
+		}
+
+		private void WriteMessage(LogMessage message)
+		{
+			ColoredConsole.WriteLine(message.Text, message.Category switch
+			{
+				MessageCategory.Good => ConsoleColor.Green,
+				MessageCategory.VeryGood => ConsoleColor.Cyan,
+				MessageCategory.Bad => ConsoleColor.Red,
+				MessageCategory.VeryBad => ConsoleColor.Magenta,
+				MessageCategory.Prompt => ConsoleColor.White,
+				MessageCategory.Warning => ConsoleColor.Yellow,
+				MessageCategory.Info => ConsoleColor.Gray,
+				_ => ConsoleColor.Gray
+			});
 		}
 	}
 	public class LogMessage(string text, MessageCategory category)
