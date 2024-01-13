@@ -1,15 +1,23 @@
 ﻿namespace The_Final_Battle;
 public class AttackAction(
     string name, string messageFormat, 
-    int minDamage, int maxDamage, int bonusDamage) : IFightAction
+    int minDamage, int maxDamage, int bonusDamage,
+    double hitChance = 1.0) : IFightAction
 {
     public string Name { get => name; }
     public int MinDamage { get; } = minDamage;
     public int MaxDamage { get; } = maxDamage;
     public int BonusDamage { get; } = bonusDamage;
+    public double HitChance { get; } = hitChance;
 
     public void Resolve(Fighter user, Fighter target, Fight fight)
     {
+        if(!RNG.PercentChance(HitChance))
+		{
+			fight.Display.AddMessage(
+				$"{user.Name} missed!", MessageCategory.Warning);
+            return;
+		}
         fight.Display.AddMessage(
             String.Format(messageFormat, user.Name, target.Name), MessageCategory.Warning);
         int damage = RNG.Roll(MinDamage, MaxDamage, BonusDamage);

@@ -6,9 +6,10 @@ ColoredConsole.WriteLine($"Hello, {playerName}!",ConsoleColor.Cyan);
 
 FightTeam playerTeam = new FightTeam(new HumanCommander());
 playerTeam.AddFighter(Fighter.CreateHero(playerName, playerTeam));
+playerTeam.AddFighter(Fighter.CreateFletcher(playerTeam));
 
 List<Fight> fights = new();
-ConsoleDisplay display = new();
+TFBConsole display = new();
 
 FightTeam enemy1 = new FightTeam(new MindlessAICommander());
 enemy1.AddFighter(Fighter.CreateSkeleton());
@@ -30,11 +31,9 @@ while (f < fights.Count)
     fights[f].Resolve(out FightTeam winningTeam);
     if(winningTeam != playerTeam)
     {
-        ColoredConsole.WriteLine("The heroes have fallen! The Uncoded One has prevailed...", ConsoleColor.Magenta);
-        Console.ReadKey(true);
+        display.GameLost();
         return;
     }
     f++;
 }
-ColoredConsole.WriteLine("The Uncoded One has been defeated! The Realms of C# are saved!", ConsoleColor.Green);
-Console.ReadKey(true);
+display.GameWon();

@@ -14,8 +14,14 @@ public class Fighter(string name, int maxHealth, FightTeam? fightTeam = null)
         Fighter hero = new(playerName, 25, fightTeam);
         hero._actions.Add(new AttackAction("PUNCH", "{0} used PUNCH on {1}.", 1, 1, 0));
         return hero;
-    }
-    public static Fighter CreateSkeleton(FightTeam? fightTeam = null)
+	}
+	public static Fighter CreateFletcher(FightTeam? fightTeam = null)
+	{
+		Fighter fletcher = new("Vin Fletcher", 15, fightTeam);
+		fletcher._actions.Add(new AttackAction("QUICK SHOT", "{0} used QUICK SHOT on {1}.", 3, 3, 0, 0.5));
+		return fletcher;
+	}
+	public static Fighter CreateSkeleton(FightTeam? fightTeam = null)
     {
         Fighter skeleton = new("Skeleton", 4, fightTeam);
         skeleton._actions.Add(new AttackAction("BONE CRUNCH", "{0} used BONE CRUNCH on {1}.", 0, 1, 0));

@@ -2,7 +2,7 @@
 
 namespace The_Final_Battle
 {
-	public class ConsoleDisplay(int maxMessages = 15)
+	public class TFBConsole(int maxMessages = 15)
 	{
 		public Queue<LogMessage> log = new();
 		public int MaxMessages { get => maxMessages; }
@@ -41,6 +41,17 @@ namespace The_Final_Battle
 			Console.WriteLine("================================================================================");
 			WriteLog();
 		}
+		public void GameWon()
+		{
+			ColoredConsole.WriteLine("The Uncoded One has been defeated! The Realms of C# are saved!", ConsoleColor.Green);
+			Console.ReadKey(true);
+		}
+
+		public void GameLost()
+		{
+			ColoredConsole.WriteLine("The heroes have fallen! The Uncoded One has prevailed...", ConsoleColor.Magenta);
+			Console.ReadKey(true);
+		}
 
 		private void WriteLog()
 		{
@@ -59,7 +70,6 @@ namespace The_Final_Battle
 				});
 			}
 		}
-
 	}
 	public class LogMessage(string text, MessageCategory category)
 	{

@@ -6,5 +6,8 @@
 
         public static int Roll(int min, int max, int bonus) =>
             rng.Next(min, max+1) + bonus;
+
+        public static bool PercentChance(double chance) =>
+            rng.NextDouble() < chance;
     }
 }
