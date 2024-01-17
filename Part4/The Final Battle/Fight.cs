@@ -22,7 +22,7 @@ public class Fight
 		Display.UpdateDisplay(this);
 		winningTeam = LeftTeam.HasAliveFighters ? LeftTeam : RightTeam;
     }
-    public FightTeam GetEnemyTeam(Fighter fighter)
+    public FightTeam GetEnemyTeam(Creature fighter)
     {
         if (LeftTeam.Contains(fighter))
             return RightTeam;

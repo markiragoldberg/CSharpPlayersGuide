@@ -5,24 +5,25 @@ TFBConsole display = new();
 string playerName = display.AskForType<string>("What is your name? ");
 display.AddMessage($"Hello, {playerName}!", MessageCategory.VeryGood);
 
+CreatureFactory creatureFactory = new CreatureFactory();
 FightTeam playerTeam = new FightTeam(new HumanCommander());
-playerTeam.AddFighter(Fighter.CreateHero(playerName, playerTeam));
-playerTeam.AddFighter(Fighter.CreateFletcher(playerTeam));
+playerTeam.AddFighter(creatureFactory.CreateCreature("hero", name: playerName));
+playerTeam.AddFighter(creatureFactory.CreateCreature("fletcher", name: "Vin Fletcher"));
 
 List<Fight> fights = new();
 
 FightTeam enemy1 = new FightTeam(new MindlessAICommander());
-enemy1.AddFighter(Fighter.CreateSkeleton());
+enemy1.AddFighter(creatureFactory.CreateCreature("skeleton"));
 fights.Add(new(playerTeam, enemy1, display));
 
 FightTeam enemy2 = new FightTeam(new MindlessAICommander());
-enemy2.AddFighter(Fighter.CreateSkeleton());
-enemy2.AddFighter(Fighter.CreateSkeleton());
+enemy2.AddFighter(creatureFactory.CreateCreature("skeleton"));
+enemy2.AddFighter(creatureFactory.CreateCreature("skeleton"));
 fights.Add(new(playerTeam, enemy2, display));
 
 
 FightTeam enemyLast = new FightTeam(new MindlessAICommander());
-enemyLast.AddFighter(Fighter.CreateBoss());
+enemyLast.AddFighter(creatureFactory.CreateCreature("boss"));
 fights.Add(new(playerTeam, enemyLast, display));
 
 int f = 0;

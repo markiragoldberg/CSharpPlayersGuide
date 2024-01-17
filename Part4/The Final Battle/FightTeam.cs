@@ -6,7 +6,7 @@ public class FightTeam
     {
         get
         {
-            foreach (Fighter fighter in _fighters)
+            foreach (Creature fighter in _fighters)
             {
                 if (fighter.Health > 0)
                     return true;
@@ -15,9 +15,9 @@ public class FightTeam
         }
     }
     public int Count { get => _fighters.Count; }
-    public Fighter this[int index] => _fighters[index];
-    public List<Fighter> Fighters { get => new(_fighters); }
-    private List<Fighter> _fighters;
+    public Creature this[int index] => _fighters[index];
+    public List<Creature> Fighters { get => new(_fighters); }
+    private List<Creature> _fighters;
     private ICommander _commander;
 
     public FightTeam(ICommander commander)
@@ -29,20 +29,21 @@ public class FightTeam
     {
         foreach (var fighter in _fighters)
         {
-            if (fight.GetEnemyTeam(fighter).HasAliveFighters)
-                TakeTurn(fighter, fight);
+            if (!fight.GetEnemyTeam(fighter).HasAliveFighters)
+                break;
+            TakeTurn(fighter, fight);
         }
     }
-    private void TakeTurn(Fighter acting, Fight fight)
+    private void TakeTurn(Creature acting, Fight fight)
     {
         fight.Display.AddMessage($"It is {acting.Name}'s turn.", MessageCategory.Info);
         fight.Display.UpdateDisplay(fight);
         //Thread.Sleep(250);
-        _commander.GetCombatAction(acting, out Fighter target, fight).Resolve(acting, target, fight);
+        _commander.GetCombatAction(acting, out Creature target, fight).Resolve(acting, target, fight);
         //Thread.Sleep(400);
     }
-    public bool Contains(Fighter fighter) => _fighters.Contains(fighter);
-    public void AddFighter(Fighter fighter)
+    public bool Contains(Creature fighter) => _fighters.Contains(fighter);
+    public void AddFighter(Creature fighter)
     {
         fighter.FightTeam = this;
         _fighters.Add(fighter);
