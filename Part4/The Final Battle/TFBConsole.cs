@@ -24,6 +24,9 @@ namespace The_Final_Battle
 		public T AskForType<T>(string prompt, string? repeatPrompt = null) where T : IParsable<T>
 			=> ColoredConsole.AskForType<T>(prompt, repeatPrompt);
 
+		public int AskForMenuOption(string postPrompt, IList<string> options, string? prePrompt = null, string? repeatPrompt = null)
+			=> ColoredConsole.AskForMenuOption(postPrompt, options, prePrompt, repeatPrompt);
+
 		public T AskForTypeInRange<T>(
 			string prompt, T min, T max,
 			ICollection<T>? excludedValues = null, string? repeatPrompt = null,

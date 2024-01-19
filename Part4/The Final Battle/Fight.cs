@@ -11,21 +11,33 @@ public class Fight
         LeftTeam = leftTeam;
         RightTeam = rightTeam;
         Display = display;
+        LeftTeam.Fight = this;
+        RightTeam.Fight = this;
     }
     public void Resolve(out FightTeam winningTeam)
     {
         while (LeftTeam.HasAliveFighters && RightTeam.HasAliveFighters)
         {
-            LeftTeam.DoRound(this);
-            RightTeam.DoRound(this);
+            LeftTeam.DoRound();
+            RightTeam.DoRound();
 		}
 		Display.UpdateDisplay(this);
 		winningTeam = LeftTeam.HasAliveFighters ? LeftTeam : RightTeam;
     }
-    public FightTeam GetEnemyTeam(Creature fighter)
+    public FightTeam? GetEnemyTeam(Creature fighter)
     {
-        if (LeftTeam.Contains(fighter))
+        if (fighter.FightTeam == LeftTeam)
             return RightTeam;
-        return LeftTeam;
-    }
+        else if (fighter.FightTeam == RightTeam)
+            return LeftTeam;
+        return null;
+	}
+	public FightTeam? GetEnemyTeam(FightTeam team)
+	{
+		if (team == LeftTeam)
+			return RightTeam;
+		else if (team == RightTeam)
+			return LeftTeam;
+		return null;
+	}
 }

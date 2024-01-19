@@ -15,6 +15,7 @@ public class FightTeam
         }
     }
     public int Count { get => _fighters.Count; }
+    public Fight? Fight { get; set; }
     public Creature this[int index] => _fighters[index];
     public List<Creature> Fighters { get => new(_fighters); }
     private List<Creature> _fighters;
@@ -25,13 +26,13 @@ public class FightTeam
         _fighters = new();
         _commander = commander;
     }
-    public void DoRound(Fight fight)
+    public void DoRound()
     {
         foreach (var fighter in _fighters)
         {
-            if (!fight.GetEnemyTeam(fighter).HasAliveFighters)
+            if (Fight == null || GetEnemyTeam()?.HasAliveFighters == false)
                 break;
-            TakeTurn(fighter, fight);
+            TakeTurn(fighter, Fight);
         }
     }
     private void TakeTurn(Creature acting, Fight fight)
@@ -61,5 +62,10 @@ public class FightTeam
             else
                 i += 1;
         }
+    }
+
+    public FightTeam? GetEnemyTeam()
+    {
+        return Fight?.GetEnemyTeam(this);
     }
 }

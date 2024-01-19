@@ -5,7 +5,7 @@
 		public static SkillTarget SelfUnconditional { get; } = new SkillTarget(TargetType.Self);
 		public static SkillTarget AllyUnconditional { get; } = new SkillTarget(TargetType.Ally);
 		public static SkillTarget EnemyUnconditional { get; } = new SkillTarget(TargetType.Enemy);
-		TargetType TargetType { get; }
+		public TargetType TargetType { get; }
 		public List<ISkillTargetCondition> Conditions { get; } = new();
 		public SkillTarget(TargetType targetType)
 		{

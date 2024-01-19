@@ -2,7 +2,7 @@
 {
 	public class SkillTracker
 	{
-		public HashSet<SkillDef> Actions { get; } = new();
+		public List<SkillDef> Actions { get; } = new();
 		public void AddSkill(SkillDef def)
 		{
 			Actions.Add(def);

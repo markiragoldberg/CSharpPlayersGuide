@@ -22,5 +22,9 @@ public class Creature
         {
             Skills.AddSkill(skillDef);
         }
+	}
+	public FightTeam? GetEnemyTeam()
+    {
+        return FightTeam?.GetEnemyTeam();
     }
 }
