@@ -2,11 +2,11 @@
 namespace The_Final_Battle;
 public class FightTeam
 {
-    public bool HasAliveFighters
+    public bool CanFight
     {
         get
         {
-            foreach (Creature fighter in _fighters)
+            foreach (Creature fighter in Fighters)
             {
                 if (fighter.Health > 0)
                     return true;
@@ -14,58 +14,48 @@ public class FightTeam
             return false;
         }
     }
-    public int Count { get => _fighters.Count; }
-    public Fight? Fight { get; set; }
-    public Creature this[int index] => _fighters[index];
-    public List<Creature> Fighters { get => new(_fighters); }
-    private List<Creature> _fighters;
+    public Creature? RandomTarget()
+    {
+		return Fighters.RandomElement<Creature>();
+	}
+    public int Count { get => Fighters.Count; }
+    public Creature this[int index] => Fighters[index];
+    public List<Creature> Fighters { get; }
     private ICommander _commander;
 
     public FightTeam(ICommander commander)
     {
-        _fighters = new();
+        Fighters = new();
         _commander = commander;
     }
-    public void DoRound()
+    public void DoRound(Fight fight)
     {
-        foreach (var fighter in _fighters)
+        foreach (var fighter in Fighters)
         {
-            if (Fight == null || GetEnemyTeam()?.HasAliveFighters == false)
-                break;
-            TakeTurn(fighter, Fight);
+            TakeTurn(fighter, fight);
         }
     }
     private void TakeTurn(Creature acting, Fight fight)
     {
-        fight.Display.AddMessage($"It is {acting.Name}'s turn.", MessageCategory.Info);
+        // future me: you can probably delete this
+        //fight.Display.AddMessage($"It is {acting.Name}'s turn.", MessageCategory.Info);
         fight.Display.UpdateDisplay(fight);
-        //Thread.Sleep(250);
-        _commander.GetCombatAction(acting, out Creature target, fight).Resolve(acting, target, fight);
-        //Thread.Sleep(400);
+        _commander.GetCombatAction(fight, acting, out Creature target).Resolve(fight, acting, target);
     }
-    public bool Contains(Creature fighter) => _fighters.Contains(fighter);
-    public void AddFighter(Creature fighter)
-    {
-        fighter.FightTeam = this;
-        _fighters.Add(fighter);
-    }
+    public bool Contains(Creature fighter) => Fighters.Contains(fighter);
+    public void Add(Creature fighter) => Fighters.Add(fighter);
     public void RemoveDead(Fight fight)
     {
         int i = 0;
-        while (i < _fighters.Count)
+        while (i < Fighters.Count)
         {
-            if (!_fighters[i].Alive)
+            if (!Fighters[i].Alive)
             {
-                fight.Display.AddMessage($"{_fighters[i].Name} has died!", MessageCategory.VeryBad);
-                _fighters.RemoveAt(i);
+                fight.Display.AddMessage($"{Fighters[i].Name} has died!", MessageCategory.VeryBad);
+				Fighters.RemoveAt(i);
             }
             else
                 i += 1;
         }
-    }
-
-    public FightTeam? GetEnemyTeam()
-    {
-        return Fight?.GetEnemyTeam(this);
     }
 }

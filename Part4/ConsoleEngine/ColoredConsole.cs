@@ -65,7 +65,7 @@ namespace ConsoleIO
 				Console.Write(repeatPrompt ?? "Try again: ");
 			}
 		}
-		public static int AskForMenuOption(string postPrompt, IList<string> options, string? prePrompt = null, string? repeatPrompt = null)
+		public static T AskForMenuOption<T>(string postPrompt, IList<(string text, T value)> options, string? prePrompt = null, string? repeatPrompt = null)
 		{
 			if (options.Count == 0)
 				throw new ArgumentException("options cannot be empty");
@@ -73,7 +73,7 @@ namespace ConsoleIO
 				Console.WriteLine(prePrompt);
 			for (int i = 0; i < options.Count; i++)
 			{
-				Console.WriteLine($"{i + 1} - {options[i]}");
+				Console.WriteLine($"{i + 1} - {options[i].text}");
 			}
 			Console.WriteLine(postPrompt);
 			while (true)
@@ -81,7 +81,7 @@ namespace ConsoleIO
 				var input = Console.ReadKey(true).KeyChar.ToString();
 				if (int.TryParse(input, null, out int result) && result >= 1 && result <= options.Count)
 				{
-					return result - 1;
+					return options[result - 1].value;
 				}
 				else if (repeatPrompt != null)
 					Console.WriteLine(repeatPrompt);

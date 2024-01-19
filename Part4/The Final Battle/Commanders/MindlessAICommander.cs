@@ -2,19 +2,19 @@
 
 public class MindlessAICommander : ICommander
 {
-    public IFightAction GetCombatAction(Creature fighter, out Creature target, Fight fight)
+    public IFightAction GetCombatAction(Fight fight, Creature fighter, out Creature target)
     {
-        SkillDef? actionDef = fighter.Skills.Actions.FirstOrDefault();
-        FightTeam enemyTeam = fight.GetEnemyTeam(fighter);
-        if (actionDef != null && enemyTeam.Count > 0)
+        SkillDef? actionDef = fighter.Skills.Actions.FirstOrDefault(s => s.IsAttack);
+        Creature? enemy = fight.GetEnemyTeam(fighter).RandomTarget();
+		if (actionDef != null && enemy != null)
         {
-            target = fight.GetEnemyTeam(fighter)[0];
-            return new AttackAction(actionDef);
+            target = enemy;
+            return new FightActions.AbilityAction(actionDef);
 		}
         else
         {
             target = fighter;
-            return new DoNothingFightAction();
+            return new FightActions.AbilityAction(SkillDef.DoNothing);
         }
     }
 }

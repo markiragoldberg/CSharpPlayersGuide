@@ -26,7 +26,7 @@
 		public int MinDamage { get; }
 		public int MaxDamage { get; }
 		public int BonusDamage { get; }
-        public Dice(int minDamage, int maxDamage, int bonusDamage)
+        public Dice(int minDamage, int maxDamage, int bonusDamage=0)
         {
             MinDamage = minDamage;
             MaxDamage = maxDamage;

@@ -11,33 +11,39 @@ public class Fight
         LeftTeam = leftTeam;
         RightTeam = rightTeam;
         Display = display;
-        LeftTeam.Fight = this;
-        RightTeam.Fight = this;
     }
     public void Resolve(out FightTeam winningTeam)
     {
-        while (LeftTeam.HasAliveFighters && RightTeam.HasAliveFighters)
+        while (LeftTeam.CanFight && RightTeam.CanFight)
         {
-            LeftTeam.DoRound();
-            RightTeam.DoRound();
+            LeftTeam.DoRound(this);
+            RightTeam.DoRound(this);
 		}
 		Display.UpdateDisplay(this);
-		winningTeam = LeftTeam.HasAliveFighters ? LeftTeam : RightTeam;
+		winningTeam = LeftTeam.CanFight ? LeftTeam : RightTeam;
     }
-    public FightTeam? GetEnemyTeam(Creature fighter)
-    {
-        if (fighter.FightTeam == LeftTeam)
-            return RightTeam;
-        else if (fighter.FightTeam == RightTeam)
-            return LeftTeam;
-        return null;
+    public FightTeam GetAllyTeam(Creature fighter)
+	{
+		if (LeftTeam.Contains(fighter))
+			return LeftTeam;
+		else if (RightTeam.Contains(fighter))
+			return RightTeam;
+        throw new ArgumentException("GetAllyTeam: creature argument isn't in the fight");
 	}
-	public FightTeam? GetEnemyTeam(FightTeam team)
+    public FightTeam GetEnemyTeam(Creature fighter)
+    {
+        if (LeftTeam.Contains(fighter))
+            return RightTeam;
+        else if (RightTeam.Contains(fighter))
+            return LeftTeam;
+        throw new ArgumentException("GetEnemyTeam: creature argument isn't in the fight");
+	}
+	public FightTeam GetEnemyTeam(FightTeam team)
 	{
 		if (team == LeftTeam)
 			return RightTeam;
 		else if (team == RightTeam)
 			return LeftTeam;
-		return null;
+		throw new ArgumentException("GetEnemyTeam: fightteam argument isn't in the fight");
 	}
 }

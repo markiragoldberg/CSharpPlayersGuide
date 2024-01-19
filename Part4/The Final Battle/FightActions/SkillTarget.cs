@@ -12,18 +12,21 @@
 			TargetType = targetType;
 		}
 
-		public bool Valid(Creature user, Creature target)
+		public bool Valid(Fight fight, Creature user, Creature target)
 		{
 			switch (TargetType)
 			{
 				case TargetType.Self:
-					if (user != target)return false;
+					if (user != target)
+						return false;
 					break;
 				case TargetType.Ally:
-					if (user.FightTeam != target.FightTeam) return false;
+					if (!fight.GetAllyTeam(user).Contains(target))
+						return false;
 					break;
 				case TargetType.Enemy:
-					if (user.FightTeam == target.FightTeam) return false;
+					if (!fight.GetEnemyTeam(user).Contains(target))
+						return false;
 					break;
 			}
 			foreach(var condition in Conditions)

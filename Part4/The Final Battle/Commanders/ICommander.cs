@@ -2,5 +2,5 @@
 
 public interface ICommander
 {
-    public IFightAction GetCombatAction(Creature acting, out Creature target, Fight fight);
+    public IFightAction GetCombatAction(Fight fight, Creature acting, out Creature target);
 }

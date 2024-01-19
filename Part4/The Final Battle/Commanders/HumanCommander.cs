@@ -1,51 +1,42 @@
 ﻿using ConsoleIO;
+using The_Final_Battle.FightActions;
 
 namespace The_Final_Battle
 {
     public class HumanCommander : ICommander
     {
-        public IFightAction GetCombatAction(Creature acting, out Creature target, Fight fight)
+        public IFightAction GetCombatAction(Fight fight, Creature acting, out Creature target)
         {
-			//         SkillDef[] options = new SkillDef[acting.Skills.Actions.Count];
-			//         int i = 0;
-			//         foreach (SkillDef skill in acting.Skills.Actions)
-			//{
-			//             options[i] = skill;
-			//	fight.Display.AddTemporaryMessage($"{i + 1} - {options[i].DefName.ToUpper()}", MessageCategory.Info);
-			//             i += 1;
-			//}
-			var doNothing = new DoNothingFightAction();
-			//         fight.Display.AddTemporaryMessage($"{i + 1} - {doNothing.Name.ToUpper()}", MessageCategory.Warning);
-			//         fight.Display.UpdateDisplay(fight);
-			//         int choice = fight.Display.AskForTypeInRange<int>(
-			//             "Perform which action? ", 1, options.Length + 1) - 1;
-
-			//         if(choice == options.Length)
-			//         {
-			//             target = acting;
-			//             return doNothing;
-			//         }
-			//         else
-			//         {
-			//             target = fight.GetEnemyTeam(acting).Fighters[0];
-			//             return new AttackAction(options[choice]);
-			//         }
-
-			List<string> options = [];
-            foreach (SkillDef def in acting.Skills.Actions)
-                options.Add(def.DefName.ToUpper());
-            options.Add("Do Nothing");
-            int choice = fight.Display.AskForMenuOption("?> ", options, "Perform which action?");
-			if (choice >= acting.Skills.Actions.Count)
+			//var doNothing = new DoNothingFightAction();
+			List<(string text, SkillDef value)> options = [];
+            foreach (SkillDef skillDef in acting.Skills.Actions.FindAll(d => d.Usable(fight, acting)))
+                options.Add((skillDef.DefName.ToUpper(), skillDef));
+            options.Add(("Do Nothing", SkillDef.DoNothing));
+            SkillDef def = fight.Display.AskForMenuOption<SkillDef>("?> ", options, "Perform which action?");
+			if(def.Target.TargetType == TargetType.Self)
 			{
 				target = acting;
-				return doNothing;
+				return new AbilityAction(def);
+			}
+			FightTeam targetTeam;
+			if (def.Target.TargetType == TargetType.Ally)
+			{
+				targetTeam = fight.GetAllyTeam(acting);
+			}
+			else // if (def.Target.TargetType == TargetType.Enemy)
+			{
+				targetTeam = fight.GetEnemyTeam(acting);
+			}
+			List<(string text, Creature value)> targetOptions = (from t in targetTeam.Fighters
+									where def.Target.Valid(fight, acting, t)
+									select (t.Name, t)).ToList();
+			if (targetOptions.Count > 1)
+			{
+				target = fight.Display.AskForMenuOption("?> ", targetOptions, "Target who?");
 			}
 			else
-			{
-				target = fight.GetEnemyTeam(acting)?.Fighters[0];
-				return new AttackAction(acting.Skills.Actions[choice]);
-			}
+				target = targetOptions[0].value;
+			return new AbilityAction(def);
 		}
 	}
 }
