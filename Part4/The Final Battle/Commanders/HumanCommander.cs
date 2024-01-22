@@ -27,6 +27,7 @@ namespace The_Final_Battle
 			{
 				targetTeam = fight.GetEnemyTeam(acting);
 			}
+			fight.Display.UpdateDisplay(fight); // clear last menu
 			List<(string text, Creature value)> targetOptions = (from t in targetTeam.Fighters
 									where def.Target.Valid(fight, acting, t)
 									select (t.Name, t)).ToList();
