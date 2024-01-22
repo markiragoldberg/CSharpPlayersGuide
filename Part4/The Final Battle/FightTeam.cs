@@ -33,7 +33,9 @@ public class FightTeam
         foreach (var fighter in Fighters)
         {
             TakeTurn(fighter, fight);
-        }
+            if (!fight.GetEnemyTeam(this).CanFight)
+                break;
+		}
     }
     private void TakeTurn(Creature acting, Fight fight)
     {
