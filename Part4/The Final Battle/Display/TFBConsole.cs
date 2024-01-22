@@ -19,11 +19,12 @@ namespace The_Final_Battle
 		public void AddTemporaryMessage(string message, MessageCategory category)
 		{
 			temporaryLog.Enqueue(new LogMessage(message, category));
+			while (log.Count + temporaryLog.Count > maxMessages)
+				log.Dequeue();
 		}
 
 		public T AskForType<T>(string prompt, string? repeatPrompt = null) where T : IParsable<T>
 			=> ColoredConsole.AskForType<T>(prompt, repeatPrompt);
-
 		public T AskForMenuOption<T>(string postPrompt, IList<(string, T)> options, string? prePrompt = null, string? repeatPrompt = null)
 			=> ColoredConsole.AskForMenuOption(postPrompt, options, prePrompt, repeatPrompt);
 
