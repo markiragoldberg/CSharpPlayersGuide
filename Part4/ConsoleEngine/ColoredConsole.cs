@@ -75,7 +75,7 @@ namespace ConsoleIO
 			{
 				Console.WriteLine($"{i + 1} - {options[i].text}");
 			}
-			Console.WriteLine(postPrompt);
+			Console.Write(postPrompt);
 			while (true)
 			{
 				var input = Console.ReadKey(true).KeyChar.ToString();
