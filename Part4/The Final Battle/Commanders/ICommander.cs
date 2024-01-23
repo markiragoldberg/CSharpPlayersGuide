@@ -1,4 +1,4 @@
-﻿namespace The_Final_Battle;
+﻿namespace The_Final_Battle.Commanders;
 
 public interface ICommander
 {

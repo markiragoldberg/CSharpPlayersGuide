@@ -1,5 +1,6 @@
-﻿using ConsoleIO;
-namespace The_Final_Battle;
+﻿namespace The_Final_Battle;
+using Commanders;
+
 public class FightTeam
 {
     public bool CanFight
@@ -21,7 +22,7 @@ public class FightTeam
     public int Count { get => Fighters.Count; }
     public Creature this[int index] => Fighters[index];
     public List<Creature> Fighters { get; }
-    private ICommander _commander;
+    private Commanders.ICommander _commander;
 
     public FightTeam(ICommander commander)
     {

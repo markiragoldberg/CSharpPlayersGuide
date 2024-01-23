@@ -1,13 +1,12 @@
 ﻿using ConsoleIO;
 using The_Final_Battle.FightActions;
 
-namespace The_Final_Battle
+namespace The_Final_Battle.Commanders
 {
     public class HumanCommander : ICommander
     {
         public IFightAction GetCombatAction(Fight fight, Messaging.Log log, Creature acting, out Creature target)
         {
-			//var doNothing = new DoNothingFightAction();
 			List<(string text, SkillDef value)> options = [];
             foreach (SkillDef skillDef in acting.Skills.Actions.FindAll(d => d.Usable(fight, acting)))
                 options.Add((skillDef.DefName.ToUpper(), skillDef));
