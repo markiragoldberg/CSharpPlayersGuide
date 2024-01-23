@@ -1,13 +1,13 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-
-namespace The_Final_Battle
+﻿namespace The_Final_Battle
 {
 	public class SkillDef
 	{
 		public string DefName { get; }
 		public SkillTarget Target { get; }
 		public List<ISkillEffect> Effects { get; }
-		public static SkillDef DoNothing { get; } = new("doNothing", new MessageEffect("{0} does nothing.", MessageCategory.Info), SkillTarget.SelfUnconditional);
+		public static SkillDef DoNothing { get; } = 
+			new("doNothing", new MessageEffect("{0} does nothing.", Messaging.MessageCategory.Info), 
+				SkillTarget.SelfUnconditional);
 		public SkillDef(string defName, List<ISkillEffect> effects, SkillTarget? target = null)
 		{
 			DefName = defName;

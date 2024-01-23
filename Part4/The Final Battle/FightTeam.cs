@@ -28,32 +28,30 @@ public class FightTeam
         Fighters = new();
         _commander = commander;
     }
-    public void DoRound(Fight fight)
+    public void DoRound(Fight fight, Messaging.Log log)
     {
         foreach (var fighter in Fighters)
         {
-            TakeTurn(fighter, fight);
+            TakeTurn(fighter, fight, log);
             if (!fight.GetEnemyTeam(this).CanFight)
                 break;
 		}
     }
-    private void TakeTurn(Creature acting, Fight fight)
+    private void TakeTurn(Creature acting, Fight fight, Messaging.Log log)
     {
-        // future me: you can probably delete this
-        //fight.Display.AddMessage($"It is {acting.Name}'s turn.", MessageCategory.Info);
-        fight.Display.UpdateDisplay(fight);
-        _commander.GetCombatAction(fight, acting, out Creature target).Resolve(fight, acting, target);
+        var action = _commander.GetCombatAction(fight, log, acting, out Creature target);
+        action.Resolve(fight, log, acting, target);
     }
     public bool Contains(Creature fighter) => Fighters.Contains(fighter);
     public void Add(Creature fighter) => Fighters.Add(fighter);
-    public void RemoveDead(Fight fight)
+    public void RemoveDead(Fight fight, Messaging.Log log)
     {
         int i = 0;
         while (i < Fighters.Count)
         {
             if (!Fighters[i].Alive)
             {
-                fight.Display.AddMessage($"{Fighters[i].Name} has died!", MessageCategory.VeryBad);
+                log.AddMessage($"{Fighters[i].Name} has died!", Messaging.MessageCategory.VeryBad);
 				Fighters.RemoveAt(i);
             }
             else

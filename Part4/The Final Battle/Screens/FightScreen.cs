@@ -1,11 +1,10 @@
 ﻿using ConsoleIO;
-using The_Final_Battle.Messaging;
 
-namespace The_Final_Battle
+namespace The_Final_Battle.Screens
 {
 	public static class FightScreen
 	{
-		public static void Display(Fight fight, Log log)
+		public static void Display(Fight fight)
 		{
 			FightTeam left = fight.LeftTeam;
 			FightTeam right = fight.RightTeam;

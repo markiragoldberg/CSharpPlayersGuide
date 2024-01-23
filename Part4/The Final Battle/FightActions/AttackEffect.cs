@@ -8,26 +8,27 @@
 		public string MissMessageFormat { get; }
 		public List<ISkillEffect>? EffectsOnHit { get; }
 		public List<ISkillEffect>? EffectsOnMiss { get; }
-		public void Apply(TFBConsole display, Creature user, Creature target)
+		public void Apply(Messaging.Log log, Creature user, Creature target)
 		{
 			if (RNG.PercentChance(HitChance))
 			{
 				int damage = DamageDice.Roll();
 				// ... implement damage modifiers here ...
 				target.AdjustHealth(damage);
-				display.AddMessage(
-					String.Format(HitMessageFormat, user.Name, target.Name, damage), MessageCategory.Warning);
+				// todo: invert MessageCategory based on team
+				log.AddMessage(String.Format(HitMessageFormat, user.Name, target.Name, damage),
+					           Messaging.MessageCategory.Warning);
 				if (EffectsOnHit != null)
 					foreach (var effect in EffectsOnHit)
-						effect.Apply(display, user, target);
+						effect.Apply(log, user, target);
 			}
 			else
 			{
-				display.AddMessage(
-					String.Format(MissMessageFormat, user.Name, target.Name), MessageCategory.Info);
+				log.AddMessage(String.Format(MissMessageFormat, user.Name, target.Name),
+							   Messaging.MessageCategory.Info);
 				if (EffectsOnMiss != null)
 					foreach (var effect in EffectsOnMiss)
-						effect.Apply(display, user, target);
+						effect.Apply(log, user, target);
 			}
 		}
 		public AttackEffect(Dice damageDice, double hitChance,

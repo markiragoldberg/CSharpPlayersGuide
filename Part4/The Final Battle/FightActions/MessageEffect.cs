@@ -1,11 +1,12 @@
 ﻿namespace The_Final_Battle
 {
+	using Messaging;
 	public class MessageEffect : ISkillEffect
 	{
-		public LogMessage MessageFormat { get; }
-		public void Apply(TFBConsole display, Creature user, Creature target)
+		public Message MessageFormat { get; }
+		public void Apply(Log log, Creature user, Creature target)
 		{
-			display.AddMessage(String.Format(MessageFormat.Text, user.Name, target.Name), MessageFormat.Category);
+			log.AddMessage(String.Format(MessageFormat.Text, user.Name, target.Name), MessageFormat.Category);
 		}
 		public MessageEffect(string text, MessageCategory category = MessageCategory.Info)
 		{

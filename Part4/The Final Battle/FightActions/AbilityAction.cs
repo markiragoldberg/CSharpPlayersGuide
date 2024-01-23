@@ -2,15 +2,15 @@
 {
 	public class AbilityAction(SkillDef def) : IFightAction
 	{
-		public void Resolve(Fight fight, Creature user, Creature target)
+		public void Resolve(Fight fight, Messaging.Log log, Creature user, Creature target)
 		{
 			if(def.Target.Valid(fight, user, target))
 			{
 				foreach (var effect in def.Effects)
 				{
-					effect.Apply(fight.Display, user, target);
+					effect.Apply(log, user, target);
 				}
-				fight.GetAllyTeam(target).RemoveDead(fight);
+				fight.GetAllyTeam(target).RemoveDead(fight, log);
 			}
 		}
 	}

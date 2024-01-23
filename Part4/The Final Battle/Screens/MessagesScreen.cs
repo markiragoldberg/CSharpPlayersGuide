@@ -5,7 +5,7 @@ namespace The_Final_Battle.Screens
 {
 	public static class MessagesScreen
 	{
-		public static void WriteRecentMessages(Log log, int messageCount = 15)
+		public static void Display(Log log, int messageCount = 15)
 		{
 			IEnumerable<Message> messages = log.MostRecent(messageCount);
 			foreach (Message message in messages)

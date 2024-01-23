@@ -2,6 +2,6 @@
 {
 	public interface ISkillEffect
 	{
-		void Apply(TFBConsole display, Creature user, Creature target);
+		void Apply(Messaging.Log log, Creature user, Creature target);
 	}
 }

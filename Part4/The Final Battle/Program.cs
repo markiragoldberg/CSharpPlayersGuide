@@ -1,9 +1,10 @@
 ﻿using ConsoleIO;
 using The_Final_Battle;
+using The_Final_Battle.Messaging;
 
-TFBConsole display = new();
-string playerName = display.AskForType<string>("What is your name? ");
-display.AddMessage($"Hello, {playerName}!", MessageCategory.VeryGood);
+Log log = new();
+string playerName = ColoredConsole.AskForType<string>("What is your name? ");
+log.AddMessage($"Hello, {playerName}!", MessageCategory.VeryGood);
 
 CreatureFactory creatureFactory = new CreatureFactory();
 FightTeam playerTeam = new FightTeam(new HumanCommander());
@@ -29,12 +30,12 @@ enemyTeams.Add(enemyLast);
 Fight nextFight;
 foreach (FightTeam enemyTeam in enemyTeams)
 {
-    nextFight = new(playerTeam, enemyTeam, display);
-    nextFight.Resolve(out FightTeam winningTeam);
+    nextFight = new(playerTeam, enemyTeam);
+    nextFight.Resolve(out FightTeam winningTeam, log);
     if(winningTeam != playerTeam)
     {
-        display.GameLost();
+        The_Final_Battle.Screens.GameLostScreen.Display();
         return;
     }
 }
-display.GameWon();
+The_Final_Battle.Screens.GameWonScreen.Display();

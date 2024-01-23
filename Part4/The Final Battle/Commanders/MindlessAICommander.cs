@@ -2,7 +2,7 @@
 
 public class MindlessAICommander : ICommander
 {
-    public IFightAction GetCombatAction(Fight fight, Creature fighter, out Creature target)
+    public IFightAction GetCombatAction(Fight fight, Messaging.Log _, Creature fighter, out Creature target)
     {
         SkillDef? actionDef = fighter.Skills.Actions.FirstOrDefault(s => s.IsAttack);
         Creature? enemy = fight.GetEnemyTeam(fighter).RandomTarget();
