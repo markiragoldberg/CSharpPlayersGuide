@@ -87,6 +87,32 @@ namespace ConsoleIO
 					Console.WriteLine(repeatPrompt);
 			}
 		}
+
+		public static T? AskForMenuOptionAbortable<T>(string postPrompt, IList<(string text, T value)> options, string? prePrompt = null, string? repeatPrompt = null)
+		{
+			if (options.Count == 0)
+				throw new ArgumentException("options cannot be empty");
+			if (prePrompt != null)
+				Console.WriteLine(prePrompt);
+			for (int i = 0; i < options.Count; i++)
+			{
+				Console.WriteLine($"{i + 1} - {options[i].text}");
+			}
+			Console.Write(postPrompt);
+			while (true)
+			{
+				var input = Console.ReadKey(true);
+				if (input.Key == ConsoleKey.Escape)
+					return default;
+				else if (int.TryParse(input.KeyChar.ToString(), null, out int result) && result >= 1 && result <= options.Count)
+				{
+					return options[result - 1].value;
+				}
+				else if (repeatPrompt != null)
+					Console.WriteLine(repeatPrompt);
+			}
+		}
+
 		public static bool AskToConfirm(string prompt, string? repeatPrompt = null)
 		{
 			string yesNo = AskForOption(prompt, ["yes", "no"], repeatPrompt);
