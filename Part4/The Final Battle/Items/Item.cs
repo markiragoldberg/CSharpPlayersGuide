@@ -5,23 +5,22 @@ namespace The_Final_Battle.Items
 	public class Item : IItem
 	{
 		public ItemDef Def { get; }
-		public int StackCount { get; set; }
-		public AbilityAction? UseAction
-		{
-			get
-			{
-				if (Def.SkillWhenUsed != null)
-				{
-					return new AbilityAction(Def.SkillWhenUsed);
-				}
-				return null;
-			}
-		}
+		public int Charges { get; set; }
+		public Inventory? Parent { get; set; }
+		public AbilityDef? OnUseAbility { get => Def.OnUseAbility; }
 
-		public Item(ItemDef def, int stackCount = 1)
+		public Item(ItemDef def, int charges = 1)
 		{
 			Def = def;
-			StackCount = stackCount;
+			Charges = charges;
+			Parent = null;
+		}
+
+		public void AfterUse()
+		{
+			Charges -= 1;
+			if (Charges <= 0 && Parent != null)
+				Parent.Remove(this);
 		}
 	}
 }

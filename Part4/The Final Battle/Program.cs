@@ -4,12 +4,21 @@ using The_Final_Battle.Commanders;
 using The_Final_Battle.Messaging;
 
 Log log = new();
-string playerName = ColoredConsole.AskForType<string>("What is your name? ");
+//string playerName;
+#if DEBUG
+    string playerName = "Brad";
+#else
+    string playerName = ColoredConsole.AskForType<string>("What is your name? ");
+#endif
 ColoredConsole.WriteLine($"Hello, {playerName}!", ConsoleColor.Green);
 
 ICommander playerCommander;
 ICommander enemyCommander;
-bool customize = ColoredConsole.AskToConfirm("Do you want to customize who controls which teams? ");
+#if DEBUG
+    bool customize = false;
+#else
+    bool customize = ColoredConsole.AskToConfirm("Do you want to customize who controls which teams? ");
+#endif
 if(customize)
 {
     bool aiPlayerTeam = ColoredConsole.AskForMenuOption<bool>("?> ",
@@ -39,12 +48,13 @@ else
 }
 
 
-CreatureFactory creatureFactory = new CreatureFactory();
+ThingFactory creatureFactory = new ThingFactory();
 FightTeam playerTeam = new FightTeam(playerCommander);
 playerTeam.Add(creatureFactory.CreateCreature("hero", name: playerName));
 playerTeam.Add(creatureFactory.CreateCreature("fletcher", name: "Vin Fletcher"));
+playerTeam.Inventory.Add(creatureFactory.CreateItem("bandage", 3));
 
-List<FightTeam> enemyTeams = new();
+List<FightTeam> enemyTeams = [];
 
 FightTeam enemy1 = new FightTeam(enemyCommander);
 enemy1.Add(creatureFactory.CreateCreature("skeleton", "skelly sentry"));

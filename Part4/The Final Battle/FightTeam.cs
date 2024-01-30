@@ -23,7 +23,7 @@ public class FightTeam
     public int Count { get => Fighters.Count; }
     public Creature this[int index] => Fighters[index];
     public List<Creature> Fighters { get; }
-    public Inventory Items { get; } = new();
+    public Inventory Inventory { get; } = new();
     private Commanders.ICommander _commander;
 
     public FightTeam(ICommander commander)

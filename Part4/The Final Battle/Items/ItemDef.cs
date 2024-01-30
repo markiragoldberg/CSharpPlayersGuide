@@ -3,12 +3,12 @@
 	public class ItemDef
 	{
 		public string DefName { get; }
-		public SkillDef? SkillWhenUsed { get; }
+		public AbilityDef? OnUseAbility { get; }
 
-		public ItemDef(string defName, SkillDef? skillWhenUsed = null)
+		public ItemDef(string defName, AbilityDef? skillWhenUsed = null)
 		{
 			DefName = defName;
-			SkillWhenUsed = skillWhenUsed;
+			OnUseAbility = skillWhenUsed;
 		}
 	}
 }

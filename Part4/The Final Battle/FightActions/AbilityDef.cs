@@ -1,26 +1,28 @@
 ﻿namespace The_Final_Battle
 {
-	public class SkillDef
+	public class AbilityDef
 	{
 		public string DefName { get; }
 		public SkillTarget Target { get; }
 		public List<ISkillEffect> Effects { get; }
-		public static SkillDef DoNothing { get; } = 
+		public bool IsAttack => Effects.Any<ISkillEffect>(e => e is AttackEffect);
+
+		public static AbilityDef DoNothing { get; } = 
 			new("doNothing", new MessageEffect("{0} does nothing.", Messaging.MessageCategory.Info), 
 				SkillTarget.SelfUnconditional);
-		public SkillDef(string defName, List<ISkillEffect> effects, SkillTarget? target = null)
+
+		public AbilityDef(string defName, List<ISkillEffect> effects, SkillTarget? target = null)
 		{
 			DefName = defName;
 			Effects = effects;
 			Target = target ?? SkillTarget.EnemyUnconditional;
 		}
-		public SkillDef(string defName, ISkillEffect onlyEffect, SkillTarget? target = null)
+		public AbilityDef(string defName, ISkillEffect onlyEffect, SkillTarget? target = null)
 		{
 			DefName = defName;
 			Effects = [onlyEffect];
 			Target = target ?? SkillTarget.EnemyUnconditional;
 		}
-		public bool IsAttack => Effects.Any<ISkillEffect>(e => e is AttackEffect);
 		public bool Usable(Fight fight, Creature user)
 		{
 			if (Target.TargetType == TargetType.Self)

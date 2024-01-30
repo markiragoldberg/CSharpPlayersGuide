@@ -18,7 +18,7 @@ public class Creature
 		Name = name ?? def.DefaultName ?? Namer.Random();
 		Health = MaxHealth = def.MaxHealth;
 		Skills = new();
-		foreach (SkillDef skillDef in def.StartingSkills)
+		foreach (AbilityDef skillDef in def.StartingSkills)
 		{
 			Skills.AddSkill(skillDef);
 		}
