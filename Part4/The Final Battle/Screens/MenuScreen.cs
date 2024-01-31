@@ -19,8 +19,8 @@ namespace The_Final_Battle.Screens
 				if (options.Count > 9)
 					throw new NotImplementedException("MenuScreen can't handle >9 options yet!");
 
-				var input = Console.ReadKey();
-				if (int.TryParse(input.ToString(), null, out int result))
+				var input = Console.ReadKey(true);
+				if (int.TryParse(input.KeyChar.ToString(), null, out int result))
 				{
 					if (1 <= result && result <= options.Count)
 					{

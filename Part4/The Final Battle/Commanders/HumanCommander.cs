@@ -21,7 +21,7 @@ namespace The_Final_Battle.Commanders
 			List<ItemAction> itemActions = actingInventory.ItemActions.FindAll(i => i.Usable(fight, acting));
 
 			List<(string, Action)> topMenu = [];
-			topMenu.Add(("Do Nothing",
+			topMenu.Add(("Nothing",
 				new Action(() => { action = SkillAction.DoNothing; possibleTarget = acting; })));
 			if (itemActions.Count > 0)
 				topMenu.Add(("Use Item", () => action = UseItem(fight, log, acting, itemActions)));
@@ -39,9 +39,9 @@ namespace The_Final_Battle.Commanders
 
 
 				if (action != null)
-				{
 					possibleTarget = GetTarget(fight, log, acting, action);
-				}
+				if (possibleTarget == null)
+					action = null;
 			}
 			target = possibleTarget;
 			return action;
@@ -83,18 +83,14 @@ namespace The_Final_Battle.Commanders
 			else // if(skillTarget.TargetType == TargetType.Enemy)
 				possibleTargets = fight.GetEnemyTeam(acting).Fighters.Where(f => skillTarget.Valid(fight, acting, f)).ToList();
 
+			if (possibleTargets.Count == 1)
+				return possibleTargets[0];
+
 			List<(string, Action)> targetMenu = new();
 			foreach (Creature targ in possibleTargets)
 				targetMenu.Add((targ.Name, () => possibleTarget = targ));
-
-			if (possibleTargets.Count == 1)
-				return possibleTarget;
-			else if (possibleTargets.Count > 1)
-			{
-
-			}
-				MenuScreen.Display(targetMenu,
-					$"{acting.Name}: {action.Def.DefName}: Target who?", abortable: true);
+			MenuScreen.Display(targetMenu,
+				$"{acting.Name}: {action.Def.DefName}: Target who?", abortable: true);
 			return possibleTarget;
 		}
 
