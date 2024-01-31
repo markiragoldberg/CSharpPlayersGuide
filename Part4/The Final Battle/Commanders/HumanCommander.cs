@@ -93,56 +93,5 @@ namespace The_Final_Battle.Commanders
 				$"{acting.Name}: {action.Def.DefName}: Target who?", abortable: true);
 			return possibleTarget;
 		}
-
-		//else if (actingInventory.Count > 0 && choice == skills.Count) // "use item"
-		//{
-		//	List<string> itemOptions = [];
-		//	for (int j = 0; j < actingInventory.ItemActions.Count; j++)
-		//	{
-		//		itemOptions.Add($"{j + 1} - {actingInventory.ItemActions[j].Item.Def.DefName} x{actingInventory.ItemActions[j].Item.Charges}");
-		//	}
-		//	itemOptions.Add($"{actingInventory.ItemActions.Count + 1} - Cancel");
-		//	Screens.FightScreen.Display(fight);
-		//	Screens.MessagesScreen.Display(log, 13 - itemOptions.Count);
-		//	Screens.MenuScreen.Display(itemOptions, $"{acting.Name}: Use which item?");
-		//	int itemChoice = ColoredConsole.AskForTypeInRange<int>("?> ", 1, itemOptions.Count) - 1;
-		//	if (itemChoice < actingInventory.ItemActions.Count)
-		//		action = actingInventory.ItemActions[itemChoice];
-		////}
-		//else // do nothing
-		//{
-		//	possibleTarget = acting;
-		//	action = SkillAction.DoNothing;
-		//}
-		//if (action != null && possibleTarget == null)
-		//{
-		//SkillTarget skillTarget = action.Def.Target;
-		//if (skillTarget.TargetType == TargetType.Self && skillTarget.Valid(fight, acting, acting))
-		//	possibleTarget = acting;
-		//else
-		//{
-		//	FightTeam targetTeam = skillTarget.TargetType == TargetType.Ally
-		//							? fight.GetAllyTeam(acting)
-		//							: fight.GetEnemyTeam(acting);
-		//	List<Creature> possibleTargets = (from t in targetTeam.Fighters
-		//									  where skillTarget.Valid(fight, acting, t)
-		//									  select (t)).ToList();
-		//	if (possibleTargets.Count == 1)
-		//		possibleTarget = possibleTargets[0];
-		//	else if (possibleTargets.Count > 1)
-		//	{
-		//		List<string> targetOptions = (from t in possibleTargets select t.Name).ToList();
-		//		for (int k = 0; k < possibleTargets.Count; k++)
-		//			targetOptions.Add($"{k + 1} - {possibleTargets[k].Name}");
-		//		targetOptions.Add($"{possibleTargets.Count + 1} - Cancel");
-		//		Screens.FightScreen.Display(fight);
-		//		Screens.MessagesScreen.Display(log, 13 - targetOptions.Count);
-		//		Screens.MenuScreen.Display(targetOptions, $"{acting.Name}: {action.Def.DefName}: Target who?");
-		//		int targetChoice = ColoredConsole.AskForTypeInRange<int>("?> ", 1, targetOptions.Count) - 1;
-		//		if (targetChoice < possibleTargets.Count)
-		//			possibleTarget = possibleTargets[targetChoice];
-		//	}
-		//}
-		//}
 	}
 }
