@@ -17,16 +17,20 @@ namespace The_Final_Battle.Commanders
 			IFightAction? action = null;
 			Creature? possibleTarget = null;
 
-			List<SkillAction> skillActions = acting.Skills.Actions.FindAll(s => s.Usable(fight, acting));
-			List<ItemAction> itemActions = actingInventory.ItemActions.FindAll(i => i.Usable(fight, acting));
+			List<SkillAction> skillActions = acting.Skills.Actions;
+			List<ItemAction> itemActions = actingInventory.ItemActions;
 
-			List<(string, Action)> topMenu = [];
-			topMenu.Add(("Nothing",
+			List<MenuOption> topMenu = [];
+			topMenu.Add(new("Nothing",
 				new Action(() => { action = SkillAction.DoNothing; possibleTarget = acting; })));
-			if (itemActions.Count > 0)
-				topMenu.Add(("Use Item", () => action = UseItem(fight, log, acting, itemActions)));
+			topMenu.Add(new("Use Item", 
+				() => action = UseItem(fight, log, acting, itemActions),
+				enabled: itemActions.Count > 0));
 			foreach (SkillAction skillAction in skillActions)
-				topMenu.Add((skillAction.Def.DefName.ToUpper(), () => action = skillAction));
+				topMenu.Add(
+					new(skillAction.Def.DefName.ToUpper(),
+					() => action = skillAction,
+					skillAction.Usable(fight, acting)));
 
 			while (action == null || possibleTarget == null)
 			{
@@ -53,10 +57,11 @@ namespace The_Final_Battle.Commanders
 				return null;
 
 			ItemAction? possibleAction = null;
-			List<(string, Action)> itemMenu = [];
+			List<MenuOption> itemMenu = [];
 			foreach (ItemAction itemAction in actions)
-				itemMenu.Add(($"{itemAction.Item.Def.DefName} x{itemAction.Item.Charges}", 
-					          () => possibleAction = itemAction));
+				itemMenu.Add(new($"{itemAction.Item.Def.DefName} x{itemAction.Item.Charges}", 
+					          () => possibleAction = itemAction,
+							  enabled : itemAction.Usable(fight, acting)));
 			Screens.FightScreen.Display(fight);
 			Screens.MessagesScreen.Display(log, 13 - itemMenu.Count);
 			Screens.MenuScreen.Display(itemMenu, $"{acting.Name}: Use which item?", abortable: true);
@@ -79,16 +84,17 @@ namespace The_Final_Battle.Commanders
 
 			List<Creature> possibleTargets;
 			if (skillTarget.TargetType == TargetType.Ally)
-				possibleTargets = fight.GetAllyTeam(acting).Fighters.Where(f => skillTarget.Valid(fight, acting, f)).ToList();
+				possibleTargets = fight.GetAllyTeam(acting).Fighters;
 			else // if(skillTarget.TargetType == TargetType.Enemy)
-				possibleTargets = fight.GetEnemyTeam(acting).Fighters.Where(f => skillTarget.Valid(fight, acting, f)).ToList();
+				possibleTargets = fight.GetEnemyTeam(acting).Fighters;
 
 			if (possibleTargets.Count == 1)
 				return possibleTargets[0];
 
-			List<(string, Action)> targetMenu = new();
+			List<MenuOption> targetMenu = new();
 			foreach (Creature targ in possibleTargets)
-				targetMenu.Add((targ.Name, () => possibleTarget = targ));
+				targetMenu.Add(new(targ.Name, () => possibleTarget = targ,
+					enabled: skillTarget.Valid(fight, acting, targ)));
 			MenuScreen.Display(targetMenu,
 				$"{acting.Name}: {action.Def.DefName}: Target who?", abortable: true);
 			return possibleTarget;

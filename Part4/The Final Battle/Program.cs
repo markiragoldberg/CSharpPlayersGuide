@@ -80,10 +80,11 @@ while (input?.Key != ConsoleKey.Q
 		LocationScreen.Display(current);
 	}
 	Direction? moveDirection = null;
-	List<(string, Action)> moveOptions = [];
-	foreach (Direction validMove in current.Neighbors.Keys)
+	List<MenuOption> moveOptions = [];
+	foreach (Direction eachDirection in Enum.GetValues(typeof(Direction)))
 	{
-		moveOptions.Add((validMove.ToString(), () => moveDirection = validMove));
+		bool enabled = current.Neighbors.ContainsKey(eachDirection);
+		moveOptions.Add(new(eachDirection.ToString(), () => moveDirection = eachDirection, enabled));
 	}
 	MenuScreen.Display(moveOptions, "Which direction do you want to go?");
 	if (moveDirection != null)
