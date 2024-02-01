@@ -24,12 +24,12 @@ public class FightTeam
     public Creature this[int index] => Fighters[index];
     public List<Creature> Fighters { get; }
     public Inventory Inventory { get; } = new();
-    private Commanders.ICommander _commander;
+    public ICommander Commander { get; set; }
 
     public FightTeam(ICommander commander)
     {
         Fighters = new();
-        _commander = commander;
+        Commander = commander;
     }
     public void DoRound(Fight fight, Messaging.Log log)
     {
@@ -42,7 +42,7 @@ public class FightTeam
     }
     private void TakeTurn(Creature acting, Fight fight, Messaging.Log log)
     {
-        var action = _commander.GetCombatAction(fight, log, acting, out Creature target);
+        var action = Commander.GetCombatAction(fight, log, acting, out Creature target);
         action.Resolve(fight, log, acting, target);
     }
     public bool Contains(Creature fighter) => Fighters.Contains(fighter);

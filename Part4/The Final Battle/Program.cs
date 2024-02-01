@@ -8,13 +8,44 @@ using The_Final_Battle.World;
 Log log = new();
 string playerName = ColoredConsole.AskForType<string>("What is your name? ");
 ColoredConsole.WriteLine($"Hello, {playerName}!", ConsoleColor.Green);
-Console.ReadKey(true);
+
+ICommander playerCommander;
+ICommander enemyCommander;
+bool customize = ColoredConsole.AskToConfirmWithDefault(
+	"Do you want to customize who controls which teams? ", false);
+if (customize)
+{
+	bool aiPlayerTeam = ColoredConsole.AskForMenuOption<bool>("?> ",
+		[("You", false), ("The Computer", true)],
+		"Who will control the heroes?");
+	Console.WriteLine();
+	bool aiEnemyTeam = ColoredConsole.AskForMenuOption<bool>("?> ",
+		[("You", false), ("The Computer", true)],
+		"And who will control the villains?");
+
+	// If both teams are AI one has to handle screen refreshes and wait for input
+	if (aiPlayerTeam == true && aiEnemyTeam == true)
+	{
+		playerCommander = new WaitForInputAICommander();
+		enemyCommander = new MindlessAICommander();
+	}
+	else
+	{
+		playerCommander = aiPlayerTeam ? new MindlessAICommander() : new HumanCommander();
+		enemyCommander = aiEnemyTeam ? new MindlessAICommander() : new HumanCommander();
+	}
+}
+else
+{
+	playerCommander = new HumanCommander();
+	enemyCommander = new MindlessAICommander();
+}
 
 CrudeWorldGenerator worldGenerator = new CrudeWorldGenerator();
 Vertex current = worldGenerator.GenerateWorld();
 
 ThingFactory creatureFactory = new ThingFactory();
-FightTeam playerTeam = new FightTeam(new HumanCommander());
+FightTeam playerTeam = new FightTeam(playerCommander);
 playerTeam.Add(creatureFactory.CreateCreature("hero", name: playerName));
 playerTeam.Add(creatureFactory.CreateCreature("fletcher", name: "Vin Fletcher"));
 playerTeam.Inventory.Add(creatureFactory.CreateItem("bandage", 3));
@@ -26,6 +57,7 @@ while (input?.Key != ConsoleKey.Q
 	LocationScreen.Display(current);
 	if (current.Interior.Enemies != null)
 	{
+		current.Interior.Enemies.Commander = enemyCommander;
 		log.AddTemporaryMessage("You have encountered enemies.", MessageCategory.Bad);
 		MessagesScreen.Display(log);
 		Console.ReadKey(true);
