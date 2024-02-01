@@ -21,7 +21,7 @@ namespace The_Final_Battle
 			_skillDefs = new();
 
 			defName = "punch";
-			AttackEffect punchAttack = new(damageDice: new(1, 1), hitChance: 1.0, null, null,
+			AttackEffect punchAttack = new(damageDice: new(1, 1), hitChance: 0.9, null, null,
 				"{0} punches {1} for {2} damage.");
 			_skillDefs[defName] = new AbilityDef(defName, punchAttack);
 
@@ -31,9 +31,14 @@ namespace The_Final_Battle
 			_skillDefs[defName] = new AbilityDef(defName, quickShotAttack);
 
 			defName = "bone crunch";
-			AttackEffect boneCrunchAttack = new(damageDice: new(0, 1), hitChance: 1.0, null, null,
+			AttackEffect boneCrunchAttack = new(damageDice: new(1, 1), hitChance: 0.5, null, null,
 				"{0} bone crunches {1} in the bones for {2} damage.");
 			_skillDefs[defName] = new AbilityDef(defName, boneCrunchAttack);
+
+			defName = "hammer";
+			AttackEffect hammerAttack = new(damageDice: new(6, 6), hitChance: 0.9, null, null,
+				"{0} smashes {1} with a hammer for {2} damage.");
+			_skillDefs[defName] = new AbilityDef(defName, hammerAttack);
 
 			defName = "unravel";
 			AttackEffect unravelAttack = new(damageDice: new(0, 2), hitChance: 1.0, null, null,
@@ -41,7 +46,7 @@ namespace The_Final_Battle
 			_skillDefs[defName] = new AbilityDef(defName, unravelAttack);
 
 			defName = "healing cantrip";
-			HealEffect healingCantrip = new(healDice: new(0, 2), "{0} healed {1} with a cantrip for {2} health.");
+			HealEffect healingCantrip = new(healDice: new(1, 2), "{0} healed {1} with a cantrip for {2} health.");
 			SkillTarget healTarget = SkillTarget.AllyUnconditional;
 			healTarget.Conditions.Add(new TargetIsInjured());
 			_skillDefs[defName] = new AbilityDef(defName, healingCantrip, healTarget);
@@ -59,6 +64,18 @@ namespace The_Final_Battle
 			defName = "skeleton";
 			_creatureDefs[defName] = new CreatureDef(defName, 4, defaultName: "Skeleton", 
 				_skillDefs["bone crunch"]);
+
+			defName = "skeleton hammerer";
+			_creatureDefs[defName] = new CreatureDef(defName, 4, defaultName: "Skeleton Hammerer",
+				_skillDefs["hammer"]);
+
+			defName = "skeleton armored";
+			_creatureDefs[defName] = new CreatureDef(defName, 9, defaultName: "Armored Skeleton",
+				_skillDefs["bone crunch"]);
+
+			defName = "skeleton healer";
+			_creatureDefs[defName] = new CreatureDef(defName, 4, defaultName: "Skeleton Healer",
+				_skillDefs["bone crunch"], _skillDefs["healing cantrip"]);
 
 			defName = "boss";
 			_creatureDefs[defName] = new CreatureDef(defName, 25, defaultName: "The Uncoded One",

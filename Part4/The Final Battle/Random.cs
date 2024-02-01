@@ -2,10 +2,13 @@
 {
 	public static class RNG
 	{
-		public readonly static System.Random rng = new();
+		private readonly static Random rng = new();
 
 		public static int Roll(int min, int max, int bonus) =>
 			rng.Next(min, max + 1) + bonus;
+
+		public static double RandomMultiplier(double min, double max) =>
+			min + (max - min) * rng.NextDouble();
 
 		public static bool PercentChance(double chance) =>
 			rng.NextDouble() < chance;
@@ -26,6 +29,8 @@
 		public int MinDamage { get; }
 		public int MaxDamage { get; }
 		public int BonusDamage { get; }
+		public double AverageResult => BonusDamage + MinDamage + (MaxDamage - MinDamage) / 2.0;
+
 		public Dice(int minDamage, int maxDamage, int bonusDamage = 0)
 		{
 			MinDamage = minDamage;
