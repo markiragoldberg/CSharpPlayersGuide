@@ -29,5 +29,11 @@
 		public void AddTemporaryMessage(string message, MessageCategory category) 
 			=> _temporaryMessages.Add(new Message(message, category));
 		public void ClearTemporaryMessages() => _temporaryMessages.Clear();
+
+		public void ClearAllMessages()
+		{
+			ClearTemporaryMessages();
+			_messages.Clear();
+		}
 	}
 }

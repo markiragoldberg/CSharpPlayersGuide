@@ -1,11 +1,13 @@
-﻿namespace The_Final_Battle
+﻿using The_Final_Battle.FightActions;
+
+namespace The_Final_Battle
 {
 	public class SkillTracker
 	{
-		public List<SkillDef> Actions { get; } = new();
-		public void AddSkill(SkillDef def)
+		public List<SkillAction> Actions { get; } = [];
+		public void AddSkill(AbilityDef def)
 		{
-			Actions.Add(def);
+			Actions.Add(new SkillAction(def));
 		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿namespace The_Final_Battle;
 using Commanders;
+using Items;
 
 public class FightTeam
 {
@@ -22,6 +23,7 @@ public class FightTeam
     public int Count { get => Fighters.Count; }
     public Creature this[int index] => Fighters[index];
     public List<Creature> Fighters { get; }
+    public Inventory Inventory { get; } = new();
     private Commanders.ICommander _commander;
 
     public FightTeam(ICommander commander)
