@@ -6,12 +6,9 @@ using The_Final_Battle.Screens;
 using The_Final_Battle.World;
 
 Log log = new();
-#if DEBUG
-string playerName = "The True Debugger";
-#else
 string playerName = ColoredConsole.AskForType<string>("What is your name? ");
-#endif
 ColoredConsole.WriteLine($"Hello, {playerName}!", ConsoleColor.Green);
+Console.ReadKey(true);
 
 CrudeWorldGenerator worldGenerator = new CrudeWorldGenerator();
 Vertex current = worldGenerator.GenerateWorld();
