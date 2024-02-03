@@ -41,54 +41,58 @@ else
 	enemyCommander = new MindlessAICommander();
 }
 
-CrudeWorldGenerator worldGenerator = new CrudeWorldGenerator();
-Vertex current = worldGenerator.GenerateWorld();
+ThingFactory factory = new ThingFactory();
+CrudeWorldGenerator worldGenerator = new CrudeWorldGenerator(factory);
+Vertex currentVertex = worldGenerator.GenerateWorld();
 
-ThingFactory creatureFactory = new ThingFactory();
 FightTeam playerTeam = new FightTeam(playerCommander);
-playerTeam.Add(creatureFactory.CreateCreature("hero", name: playerName));
-playerTeam.Add(creatureFactory.CreateCreature("fletcher", name: "Vin Fletcher"));
-playerTeam.Inventory.Add(creatureFactory.CreateItem("bandage", 3));
+playerTeam.Add(factory.CreateCreature("hero", name: playerName));
+playerTeam.Add(factory.CreateCreature("fletcher", name: "Vin Fletcher"));
+playerTeam.Inventory.Add(factory.CreateItem("bandage", 3));
 
 ConsoleKeyInfo? input = null;
 while (input?.Key != ConsoleKey.Q
 	|| (input?.Modifiers & ConsoleModifiers.Shift) == 0)
 {
-	LocationScreen.Display(current);
-	if (current.Interior.Enemies != null)
+	LocationScreen.Display(currentVertex);
+	FightTeam? enemyTeam = currentVertex.Interior.Enemies;
+	if (enemyTeam != null)
 	{
-		current.Interior.Enemies.Commander = enemyCommander;
+		enemyTeam.Commander = enemyCommander;
 		log.AddTemporaryMessage("You have encountered enemies.", MessageCategory.Bad);
 		MessagesScreen.Display(log);
 		Console.ReadKey(true);
-		Fight fight = new(playerTeam, current.Interior.Enemies);
+		Fight fight = new(playerTeam, enemyTeam);
 		fight.Resolve(out FightTeam winningTeam, log);
 		if (winningTeam != playerTeam)
 		{
 			GameLostScreen.Display();
 			return;
 		}
-		else if (current.Interior.Name == "Consolas Crypt")
+		else if (currentVertex.Interior.Name == "Consolas Crypt")
 		{
 			The_Final_Battle.Screens.GameWonScreen.Display();
 			return;
 		}
-		current.Interior.Enemies = null;
 		log.AddTemporaryMessage("You have defeated the enemy.", MessageCategory.Good);
-		Console.ReadKey(true);
+		if(enemyTeam.Inventory.Count > 0)
+		{
+			LootScreen.Display(enemyTeam.Inventory);
+		}
+		playerTeam.Inventory.TakeAll(enemyTeam.Inventory);
 		log.ClearAllMessages();
-		LocationScreen.Display(current);
+		LocationScreen.Display(currentVertex);
 	}
 	Direction? moveDirection = null;
 	List<MenuOption> moveOptions = [];
 	foreach (Direction eachDirection in Enum.GetValues(typeof(Direction)))
 	{
-		bool enabled = current.Neighbors.ContainsKey(eachDirection);
+		bool enabled = currentVertex.Neighbors.ContainsKey(eachDirection);
 		moveOptions.Add(new(eachDirection.ToString(), () => moveDirection = eachDirection, enabled));
 	}
 	MenuScreen.Display(moveOptions, "Which direction do you want to go?");
 	if (moveDirection != null)
 	{
-		current = current.Neighbors[moveDirection.Value];
+		currentVertex = currentVertex.Neighbors[moveDirection.Value];
 	}
 }

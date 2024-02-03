@@ -2,11 +2,10 @@
 
 namespace The_Final_Battle.World
 {
-	public class CrudeWorldGenerator : IWorldGenerator
+	public class CrudeWorldGenerator(ThingFactory factory) : IWorldGenerator
 	{
 		public Vertex GenerateWorld()
 		{
-			ThingFactory factory = new();
 			MindlessAICommander enemyCommander = new();
 
 			Location originLoc = new("Consolas", 

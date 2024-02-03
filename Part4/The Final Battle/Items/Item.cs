@@ -8,6 +8,7 @@ namespace The_Final_Battle.Items
 		public int Charges { get; set; }
 		public Inventory? Parent { get; set; }
 		public AbilityDef? OnUseAbility { get => Def.OnUseAbility; }
+		public string Name => $"{Def.DefName} {(Charges > 1 ? $"({Charges})" : "" )}";
 
 		public Item(ItemDef def, int charges = 1)
 		{

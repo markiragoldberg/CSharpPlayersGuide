@@ -12,7 +12,7 @@ namespace The_Final_Battle.Items
 
 		public void Add(Item item)
 		{
-			Item? duplicate = _items.Where(i => i.Def == item.Def).FirstOrDefault();
+			Item? duplicate = _items.FirstOrDefault(i => i.Def == item.Def);
 			if (duplicate != null)
 				duplicate.Charges += item.Charges;
 			else
@@ -27,6 +27,15 @@ namespace The_Final_Battle.Items
 		{
 			_items.Remove(item);
 			ItemActions.RemoveAll(action => action.Item == item);
+		}
+
+		public void TakeAll(Inventory otherInventory)
+		{
+			foreach (Item item in otherInventory.Items)
+			{
+				Add(item);
+			}
+			otherInventory.Items.Clear();
 		}
 	}
 }
