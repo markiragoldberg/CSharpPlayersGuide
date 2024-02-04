@@ -17,7 +17,7 @@ namespace The_Final_Battle.Commanders
 			IFightAction? action = null;
 			Creature? possibleTarget = null;
 
-			List<SkillAction> skillActions = acting.Skills.Actions;
+			List<IFightAction> creatureActions = acting.Actions;
 			List<ItemAction> itemActions = actingInventory.ItemActions;
 
 			List<MenuOption> topMenu = [];
@@ -26,11 +26,11 @@ namespace The_Final_Battle.Commanders
 			topMenu.Add(new("Use Item", 
 				() => action = UseItem(fight, log, acting, itemActions),
 				enabled: itemActions.Count > 0));
-			foreach (SkillAction skillAction in skillActions)
+			foreach (IFightAction creatureAction in creatureActions)
 				topMenu.Add(
-					new(skillAction.Label.ToUpper(),
-					() => action = skillAction,
-					skillAction.Usable(fight, acting)));
+					new(creatureAction.Label.ToUpper(),
+					() => action = creatureAction,
+					creatureAction.Usable(fight, acting)));
 
 			while (action == null || possibleTarget == null)
 			{

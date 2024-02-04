@@ -20,8 +20,8 @@ namespace The_Final_Battle.World
 			Location eastLoc = new("Consolas Graveyard",
 				"The dead do not rest easy in the fog-soaked mud of Consolas's graveyard.");
 			FightTeam twoSkeletons = new FightTeam(enemyCommander);
-			twoSkeletons.Add(factory.CreateCreature("skeleton", "skelly warrior"));
-			twoSkeletons.Add(factory.CreateCreature("skeleton", "skelly soldja"));
+			twoSkeletons.Add(factory.CreateCreature("skeleton", weapon: factory.CreateWeapon("dagger")));
+			twoSkeletons.Add(factory.CreateCreature("skeleton", weapon: factory.CreateWeapon("dagger")));
 			eastLoc.Enemies = twoSkeletons;
 			Vertex east = new(eastLoc);
 			origin.AddEdge(Direction.East, east);
@@ -30,8 +30,8 @@ namespace The_Final_Battle.World
 			Location testAIItemUseLocation = new("Consolas Ripoff",
 				"This ruined hospital is marked by explosions.");
 			FightTeam hammerAndAnvil = new(enemyCommander);
-			hammerAndAnvil.Add(factory.CreateCreature("skeleton hammerer", "Hammer the Skeleton"));
-			hammerAndAnvil.Add(factory.CreateCreature("skeleton armored", "Anvil the Skeleton"));
+			hammerAndAnvil.Add(factory.CreateCreature("skeleton hammerer", weapon: factory.CreateWeapon("hammer"), name: "Hammer the Skeleton"));
+			hammerAndAnvil.Add(factory.CreateCreature("skeleton armored", name: "Anvil the Skeleton"));
 			hammerAndAnvil.Inventory.Add(factory.CreateItem("bandage", 5));
 			testAIItemUseLocation.Enemies = hammerAndAnvil;
 			Vertex testAIIItemUse = new(testAIItemUseLocation);
@@ -41,7 +41,7 @@ namespace The_Final_Battle.World
 			Location bossCrypt = new("Consolas Crypt",
 				"You are in the Crypt of Consolas. The UNCODED ONE is here but you can beat him, easy-peasy.");
 			FightTeam bossTeam = new(enemyCommander);
-			bossTeam.Add(factory.CreateCreature("boss"));
+			bossTeam.Add(factory.CreateCreature("boss", name: "Uncoded One"));
 			bossTeam.Add(factory.CreateCreature("skeleton healer"));
 			bossCrypt.Enemies = bossTeam;
 			Vertex east2x = new(bossCrypt);

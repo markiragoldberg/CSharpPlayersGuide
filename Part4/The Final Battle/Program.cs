@@ -46,8 +46,8 @@ CrudeWorldGenerator worldGenerator = new CrudeWorldGenerator(factory);
 Vertex currentVertex = worldGenerator.GenerateWorld();
 
 FightTeam playerTeam = new FightTeam(playerCommander);
-playerTeam.Add(factory.CreateCreature("hero", name: playerName));
-playerTeam.Add(factory.CreateCreature("fletcher", name: "Vin Fletcher"));
+playerTeam.Add(factory.CreateCreature("hero", weapon: factory.CreateWeapon("sword"), name: playerName));
+playerTeam.Add(factory.CreateCreature("fletcher", weapon: factory.CreateWeapon("fine bow"), name: "Vin Fletcher"));
 playerTeam.Inventory.Add(factory.CreateItem("bandage", 3));
 
 ConsoleKeyInfo? input = null;
