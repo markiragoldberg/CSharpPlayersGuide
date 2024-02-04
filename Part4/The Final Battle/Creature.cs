@@ -1,4 +1,5 @@
 ﻿using The_Final_Battle;
+using The_Final_Battle.Defs;
 
 public class Creature
 {
@@ -15,7 +16,7 @@ public class Creature
 	}
 	public Creature(CreatureDef def, string? name = null)
 	{
-		Name = name ?? def.DefaultName ?? Namer.Random();
+		Name = name ?? def.Label;
 		Health = MaxHealth = def.MaxHealth;
 		Skills = new();
 		foreach (AbilityDef skillDef in def.StartingSkills)

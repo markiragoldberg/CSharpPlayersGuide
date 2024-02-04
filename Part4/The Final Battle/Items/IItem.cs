@@ -1,7 +1,9 @@
-﻿namespace The_Final_Battle.Items
+﻿using The_Final_Battle.Defs;
+
+namespace The_Final_Battle.Items
 {
-	public interface IItem
+    public interface IItem
 	{
-		public ItemDef Def { get; }
+		public ConsumableDef Def { get; }
 	}
 }

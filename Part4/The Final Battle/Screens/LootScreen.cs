@@ -10,7 +10,7 @@ namespace The_Final_Battle.Screens
 			ColoredConsole.WriteLine("You recover: ", ConsoleColor.Gray);
 			foreach (var item in loot.Items)
 			{
-				ColoredConsole.WriteLine(item.Name, ConsoleColor.Cyan);
+				ColoredConsole.WriteLine(item.Label, ConsoleColor.Cyan);
 			}
 			Console.ReadKey(true);
 		}

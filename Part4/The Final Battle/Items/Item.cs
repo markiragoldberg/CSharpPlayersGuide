@@ -1,16 +1,17 @@
-﻿using The_Final_Battle.FightActions;
+﻿using The_Final_Battle.Defs;
+using The_Final_Battle.FightActions;
 
 namespace The_Final_Battle.Items
 {
-	public class Item : IItem
+    public class Item : IItem
 	{
-		public ItemDef Def { get; }
+		public ConsumableDef Def { get; }
 		public int Charges { get; set; }
 		public Inventory? Parent { get; set; }
 		public AbilityDef? OnUseAbility { get => Def.OnUseAbility; }
-		public string Name => $"{Def.DefName} {(Charges > 1 ? $"({Charges})" : "" )}";
+		public string Label => $"{Def.Label} {(Charges > 1 ? $"(x{Charges})" : "" )}";
 
-		public Item(ItemDef def, int charges = 1)
+		public Item(ConsumableDef def, int charges = 1)
 		{
 			Def = def;
 			Charges = charges;

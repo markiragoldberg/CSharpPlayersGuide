@@ -1,9 +1,11 @@
-﻿using The_Final_Battle.Items;
+﻿using The_Final_Battle.Defs;
+using The_Final_Battle.Items;
 
 namespace The_Final_Battle.FightActions
 {
-	public class ItemAction : IFightAction
+    public class ItemAction : IFightAction
 	{
+		public string Label => Def.Label;
 		public Item Item { get; }
 		public AbilityDef Def { get; }
 		public bool IsAttack { get => Item.OnUseAbility != null && Item.OnUseAbility.IsAttack; }

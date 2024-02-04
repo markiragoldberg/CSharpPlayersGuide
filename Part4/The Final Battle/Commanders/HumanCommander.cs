@@ -28,7 +28,7 @@ namespace The_Final_Battle.Commanders
 				enabled: itemActions.Count > 0));
 			foreach (SkillAction skillAction in skillActions)
 				topMenu.Add(
-					new(skillAction.Def.DefName.ToUpper(),
+					new(skillAction.Label.ToUpper(),
 					() => action = skillAction,
 					skillAction.Usable(fight, acting)));
 
@@ -59,8 +59,7 @@ namespace The_Final_Battle.Commanders
 			ItemAction? possibleAction = null;
 			List<MenuOption> itemMenu = [];
 			foreach (ItemAction itemAction in actions)
-				itemMenu.Add(new($"{itemAction.Item.Def.DefName} x{itemAction.Item.Charges}", 
-					          () => possibleAction = itemAction,
+				itemMenu.Add(new(itemAction.Item.Label, () => possibleAction = itemAction,
 							  enabled : itemAction.Usable(fight, acting)));
 			Screens.FightScreen.Display(fight);
 			Screens.MessagesScreen.Display(log, 13 - itemMenu.Count);
@@ -96,7 +95,7 @@ namespace The_Final_Battle.Commanders
 				targetMenu.Add(new(targ.Name, () => possibleTarget = targ,
 					enabled: skillTarget.Valid(fight, acting, targ)));
 			MenuScreen.Display(targetMenu,
-				$"{acting.Name}: {action.Def.DefName}: Target who?", abortable: true);
+				$"{acting.Name}: {action.Label}: Target who?", abortable: true);
 			return possibleTarget;
 		}
 	}

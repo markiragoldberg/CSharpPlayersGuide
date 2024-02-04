@@ -1,8 +1,9 @@
-﻿using The_Final_Battle.FightActions;
+﻿using The_Final_Battle.Defs;
+using The_Final_Battle.FightActions;
 
 namespace The_Final_Battle
 {
-	public class SkillTracker
+    public class SkillTracker
 	{
 		public List<SkillAction> Actions { get; } = [];
 		public void AddSkill(AbilityDef def)

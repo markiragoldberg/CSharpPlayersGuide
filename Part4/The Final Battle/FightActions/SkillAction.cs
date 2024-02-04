@@ -1,8 +1,11 @@
-﻿namespace The_Final_Battle.FightActions
+﻿using The_Final_Battle.Defs;
+
+namespace The_Final_Battle.FightActions
 {
-	public class SkillAction : IFightAction
+    public class SkillAction : IFightAction
 	{
 		public AbilityDef Def { get; }
+		public string Label => Def.Label;
 		public bool IsAttack { get => Def.IsAttack; }
 		public void Resolve(Fight fight, Messaging.Log log, Creature user, Creature target)
 		{
